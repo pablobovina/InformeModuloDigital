@@ -1,0 +1,23 @@
+Definicion de un experimento
+
+Esta seccion describe como se define un experimento.
+
+En la actualidad una numerosa cantidad de proyectos utilizan notacion JSON para representar
+objetos por muchas razones entre ellas su facilidad para ser comprendido por parte de desarrolladores
+y el soporte buil-in para ser manipulado por navegadores web y nuestros lenguajes elegidos para
+desarrollar, python y javascript.[https://es.wikipedia.org/wiki/JSON]
+
+Idealmente estos objetos son tambien sencillos de almacenar en bases de datos no relacionales
+aunque de esto haremos mencion mas adelante en el capitulo ZZ.
+
+Haciendo uso de aritmetica podemos deducir que la representacion de un experimento
+es liviana puesto que el numero de instrucciones de un programa P sera de N < 999 instrucciones
+lo que nos daria un peso aproximado en MB < Y MB por experimento representado en esta notacion.
+
+La validacion del esquema JSON de un experimento, sera llevada a cabo por un modulo el cual haremos
+mencion en el capitulo ZZ. 
+
+Cabe destacar que los tipos de datos presentes en la especificacion de un experiemento son
+soportados sin perdidad de presicion por parte de la notacion JSON.[https://stackoverflow.com/questions/35709595/why-would-you-use-a-string-in-json-to-represent-a-decimal-number]
+
+
