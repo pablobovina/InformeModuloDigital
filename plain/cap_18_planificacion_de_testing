@@ -1,8 +1,25 @@
 
 
-La planificacion de testing del sistema tuvo varios enfoques en respuesta a diferentes objetivos:
+La planificacion de testing del sistema tiene varios enfoques en respuesta a diferentes objetivos:
 
     * brindar una experiencia agradable al usuario final
-    * lograr una integracion limpia entre modulos
-    * lograr cobertura de requerimientos a diversos niveles
-    *
+    * lograr una integracion coherente entre modulos
+    * aumentar cobertura de requerimientos
+    * facilitar la comprension del comportamiento esperado del sistema
+
+
+El Modulo Digital es un componente de hardware el cual se prueba:
+    * entradas de configuracion para el PP2, DDS2 y AD
+    * entradas de programa ejecutable por el PP2
+    * existencia de conexion via interfaz USB
+    * salidas de señales RF
+    * salidas de pulsos TTL
+    * input de conversion de datos del AD
+    * salida de reportes de los canales A y B.
+
+Servidor:
+
+    * solo usuarios autenticados pueden acceder a los servicios
+    * solo un experimento en ejecucion si lo hubiese
+    * los usuarios tienen sesiones independientes
+    * el servidor siempre esta disponible
