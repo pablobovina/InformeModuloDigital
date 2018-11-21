@@ -1,0 +1,15 @@
+
+
+De acuerdo con los enfoques generales y por unidad se diseñaron los siguientes casos de prueba
+
+* experimento con configuracion invalida del AD
+* experimento con configuracion invalida del DDS2
+* experimento con secuencia invalida para el PP2
+
+* experimento un pulso largo
+* experimento un pulso corto
+* experimento con pulsos largos y cortos intercalados
+* experimento promedio con un pulso
+* experimento promedio con un pulso variable en duracion
+* experimento promedio con un pulso variable en fase
+

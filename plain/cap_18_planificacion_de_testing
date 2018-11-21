@@ -37,7 +37,7 @@ Por unidad existen las siguientes validaciones:
 
 Dados los diferentes enfoques son necesarias se eligieron las siguientes para probar:
 
-    * Postman para simular peticiones a servicios REST
+    * Postman para simular comunicacion http con servicios REST
     * Arduino para visualizar los pulsos TTL via Serial Plotter
     * Osciloscopio para medir señales RF generadas en los experimentos.
     * Generador de señales para simular adquisicion de datos del AD.
