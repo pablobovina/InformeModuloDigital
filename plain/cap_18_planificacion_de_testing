@@ -2,24 +2,44 @@
 
 La planificacion de testing del sistema tiene varios enfoques en respuesta a diferentes objetivos:
 
-    * brindar una experiencia agradable al usuario final
+    * brindar una experiencia predecible y agradable al usuario final
     * lograr una integracion coherente entre modulos
-    * aumentar cobertura de requerimientos
+    * aumentar cobertura de requerimientos de usuario y sistema
     * facilitar la comprension del comportamiento esperado del sistema
 
+Por unidad existen las siguientes validaciones:
 
-El Modulo Digital es un componente de hardware el cual se prueba:
-    * entradas de configuracion para el PP2, DDS2 y AD
-    * entradas de programa ejecutable por el PP2
-    * existencia de conexion via interfaz USB
-    * salidas de señales RF
-    * salidas de pulsos TTL
-    * input de conversion de datos del AD
-    * salida de reportes de los canales A y B.
+    Modulo Digital
+        
+        * entradas de configuracion para el PP2, DDS2 y AD
+        * entradas de programa ejecutable por el PP2
+        * existencia de conexion via interfaz USB durante la ejecucion de experimentos
+        * salidas de señales RF
+        * salidas de pulsos TTL
+        * input de conversion de datos del AD
+        * salida de reportes de los canales A y B.
 
-Servidor:
+    Servidor
 
-    * solo usuarios autenticados pueden acceder a los servicios
-    * solo un experimento en ejecucion si lo hubiese
-    * los usuarios tienen sesiones independientes
-    * el servidor siempre esta disponible
+        * autenticacion obligatoria en los servicios
+        * ejecucion secuencial de los experimentos
+        * aislamiento de espacio de trabajo de usuarios
+        * coherencia en los estados de los experimentos
+        * generacion de reportes
+        * gestion de procesos de ejecucion de experimentos
+
+    Interfaz de usuario web
+
+        * visualizacion coherente de elementos y estilos
+        * tiempos cortos de carga de las vistas
+        * visualizacion de alertas de usuario
+        * transiciones entre vistas
+
+Dados los diferentes enfoques son necesarias se eligieron las siguientes para probar:
+
+    * Postman para simular peticiones a servicios REST
+    * Arduino para visualizar los pulsos TTL via Serial Plotter
+    * Osciloscopio para medir señales RF generadas en los experimentos.
+    * Generador de señales para simular adquisicion de datos del AD.
+    * Google Chrome y herramientas para validar estados de la interfaz grafica.
+    * Mock del servidor escrito en Flask-Python para simular servicios REST.
