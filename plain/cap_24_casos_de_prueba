@@ -5,11 +5,48 @@ De acuerdo con los enfoques generales y por unidad se diseñaron los siguientes 
 * experimento con configuracion invalida del AD
 * experimento con configuracion invalida del DDS2
 * experimento con secuencia invalida para el PP2
-
 * experimento un pulso largo
 * experimento un pulso corto
 * experimento con pulsos largos y cortos intercalados
 * experimento promedio con un pulso
 * experimento promedio con un pulso variable en duracion
 * experimento promedio con un pulso variable en fase
+* experimento un pulso dentro de un loop
+* experimento un pulso dentro de un loop de nivel 4
+* experimento con un RETL sin LOOP asociado
+* experimento con un LOOP sin RETL asociado
+* experimento con un LOOP de nivel 5
 
+* solicitud de servicio sin token de autenticacion
+* solicitud de autenticacion con usuario no registrado
+* solicitud de autenticacion con usuario registrado pero contraseña invalida
+* solicitud de fin de sesion
+* solicitud de creacion de un experimento
+* solicitud de edicion de un experimento
+* solicitud de edicion de un experimento inexistente
+* solicitud de edicion de un experimento en ejecucion
+* solicitud de eliminacion de un experimento
+* solicitud de eliminacion de un experimento inexistente
+* solicitud de eliminacion de un experimento en ejecucion
+* solicitud de ejecucion de un experimento habiendo uno en ejecucion
+* solicitud de ejecucion de un experimento inexistente
+* solicitud de ejecucion de un experimento
+* solicitud de cancelacion de una ejecucion en curso
+* solicitud de reporte durante la ejecucion
+* solicitud de reporte finalizada la ejecucion
+* solicitud de reporte de un experimento que nunca se ejecuto
+* solicitud de reporte de una ejecucion cancelada
+* solicitud de reporte de una ejecucion fallida
+
+
+* ingreso al sitio con usuario y contraseña validos
+* ingreso al sitio con usuario ó contraseña invalidos
+* salida del sitio con boton login
+* visualizacion de lista de experimentos creados
+* visualizacion de lista de resultados
+* visualizacion de detalles de un experimento
+* visualizacion de detalles de un resultado
+* visualizacion de menu de gestion de experimentos
+* visualizacion de menu de gestion de resultados
+* visualizacion de menu de navegacion
+* visualizacion de alertas
