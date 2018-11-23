@@ -42,10 +42,21 @@ De acuerdo con los enfoques generales y por unidad se diseñaron los siguientes 
 * ingreso al sitio con usuario y contraseña validos
 * ingreso al sitio con usuario ó contraseña invalidos
 * salida del sitio con boton login
+
+* crear un experimento
+
 * visualizacion de lista de experimentos creados
+* filtrado de lista de experimentos creados
+
+* ver un experimento seleccionado de la lista
+* edicion de un experimento seleccionado de la lista
+* eliminacion de un experimento seleccionado de la lista
+* ejecucion de un experimento seleccionado de la lista
+
+
+
 * visualizacion de lista de resultados
-* visualizacion de detalles de un experimento
-* visualizacion de detalles de un resultado
+* ver detalles de un resultado
 * visualizacion de menu de gestion de experimentos
 * visualizacion de menu de gestion de resultados
 * visualizacion de menu de navegacion
