@@ -1,0 +1,28 @@
+
+
+Niveles:
+    * Muy Alto
+    * Alto
+    * Medio
+    * Bajo
+    * Trivial
+
+Modulo Digital
+    * Usb: Alto
+    * PP2: Alto
+    * AD: Alto
+    * DDS2: Muy Alto
+    * Reporte: Bajo
+    * Hilo: Alto
+
+Server:
+    * Servicios: Alto
+    * Login: Alto
+    * Integracion: Muy Alto
+    * Modelado: Medio
+    * Manager Hilos: Alto
+
+Interfaz Grafica:
+    * Vistas: Alto
+    * Integracion: Alto
+    * Alertas: Alto

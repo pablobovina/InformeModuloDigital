@@ -1,0 +1,11 @@
+
+
+
+Se propone como analisis de performace un experimento con las siguientes caracteristicas:
+
+* 500 promedios
+* 2 loops con un pulso cada uno
+* bloque de 8K
+* 4 fases
+
+Los consumos de CPU - RAM - DISCO

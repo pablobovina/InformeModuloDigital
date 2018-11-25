@@ -1,0 +1,22 @@
+
+
+La integracion de los modulos del sistema se implementa a diferentes niveles:
+
+
+Repositorio
+
+Un submodulo git es un repositorio dentro de otro que lo incluye, con su propio historial de cambios. Asi mismo cuando hay un cambio en un submodulo el contenedor lo contemplara siempre y cuando lo agregue al historial de este.
+El repositorio afectado por esta metodologia es el del Servidor incluyento al Modulo Digital y a la Interfaz Grafica.
+
+El arbol de directorios del repositorio queda asi:
+
+
+Codigo:
+
+El servidor provee el ManagerThread para poder interactuar con el Modulo Digital y con el 
+modelo de la base de datos segun el estado de la ejecucion del experimento en curso.
+
+Para integrar con la Interfaz grafica lo hace de manera estandar via configuracion del servidor
+que provee seguridad y autenticacion de los servicios via CSRF-Token presente en el archivo
+principal index.html de la Interfax Grafica.
+
