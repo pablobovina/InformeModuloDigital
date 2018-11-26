@@ -1,0 +1,21 @@
+\section{Hilo de ejecucion de experimento}
+
+Esta seccion describe porque y como el concepto de hilos aplica a la ejecucion de un experimento.
+
+La duracion de un experimento puede ser de horas, esta caracteristica involucra tres problematicas
+a resolver:
+
+* evitar time-out del lado del cliente
+* desacoplar la atencion de una peticion de usuario de la ejecucion de un experimento
+* lograr una experiencia de usuario agradable
+
+Modelando el proceso de ejecucion con un hilo separado del principal es una aproximacion
+valida para resolver el problema y por lo tanto tener en cuenta los siguientes:
+
+* seguimiento del estado del hilo
+* control sobre el numero de hilos creados
+* gestion de los datos durante la ejecucion del hilo
+
+Implementar un administrador de ejecucion de experimentos es la solucion en este escenario.
+
+El siguiente diagrama muestra el diseño del administrador.

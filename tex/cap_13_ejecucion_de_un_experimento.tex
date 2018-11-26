@@ -1,0 +1,29 @@
+\section{Ejecucion de un experimento}
+
+Esta seccion describe los conceptos dry-run main-run y algunos escenarios de ejecucion de
+experimentos cubiertos por la implementacion.
+
+
+Un modo de capturar fallos inesperados es simular la ejecucion de un experimento evitando 
+la interaccion con el modulo digital via usb configurando el sistema en modo simulado.
+
+En modo simulado el experimento se ejecuta en un entorno controlado con el objetivo detectar
+escencialmente 3 situaciones no deseadas:
+
+* una exepcion de software no capturada
+* parametros fuera de rango para alguno de los submodulos
+* un error en la traduccion del experimento a un programa ejecutable en el PP2
+
+Este experimento simulado no se ejecuta en un hilo separado puesto que la demora es baja.
+
+De manera alternativa el modo simulado puede verse tambien como un test de integracion
+entre las unidades de software desarrolladas.
+
+Si el experimento simulado tiene exito entonces se procede con la ejecucion efectiva del experimento
+el cual debemos tener algunos detalles en cuenta:
+
+* puede durar horas
+* puede ser cancelado en cualquier momento
+* debe estar sincronizado con la base de datos
+
+El siguiente diagrama clases muestra el diseño de un experimento simulado y un experimento.

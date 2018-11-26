@@ -1,0 +1,63 @@
+\section{Requisitos del sistema}
+
+Podemos ver los requerimientos en generales
+
+
+* permitir a mas de un usuario utilizar el sistema
+* permitir a usuarios la gestion de experimentos
+* modelar un experimento y su ejecucion
+* proveer acceso remoto al sistema
+
+De estos requerimientos se desprenden los siguientes especificos:
+
+* el usuario tiene una sesion asignada al ingreso del sistema y revocada a la salida del mismo.
+* varios usuarios pueden acceder al sistema al mismo tiempo
+
+
+* el usuario puede ver si hay un experimento en ejecucion y el detalle del mismo
+* el usuario tiene un espacio de trabajo donde puede crear/ver/actualizar/eliminar sus experimentos
+* el usuario puede cancelar el experimento en ejecucion
+* el usuario puede solicitar un reporte parcial de un experimento en ejecucion
+* el usuario puede solicitar el reporte final de un experimento finalizada la ejecucion
+* el usuario puede verificar el estado de un experimento:
+* el usuario es notificado antes de la ejecucion de un experimento cuando:
+    * salida voluntaria por error:
+        * no es una secuencia ejecutable por el PP2
+        * ya existe algun experimento ejecutandose
+        * algun parametro de configuracion es invalido en algun submodulo PP2, DDS2, AD, USB
+        * fallo en conexion via USB
+    * salida involuntaria por error:
+        * hubo alguna excepcion de sistema no controlada
+        * no se pudo establecer conexion con el servidor
+        * un experimento finalizado no actualizo su estado impidiendo la ejecucion de solcitido
+
+* un experimento tiene una secuencia definidida con sus parametros
+* un experimento tiene una marca de tiempo de creacion/actualizacion
+* un experimento eliminado no es recuperable
+* un experimento tiene un autor que es el usuario que lo creo
+* un experimento tiene estado created cuando esta almacenado en base de datos
+* un experimento es solo visible para el usuario que lo creo
+* un experimento tiene un titulo
+* un experimento tiene una descripcion
+* un experimento no tiene un historial de edicion asociado
+
+* un resultado es el producto de la ejecucion de un experimento
+* un resultado es parcial cuando la ejecucion del experimento asociado no finalizo
+* un resultado es final cuando la ejecucion del experimento asociado finalizo
+* un resultado tiene un unico experimento asociado
+
+* un reporte parcial es el grupo de datos de un resultado parcial
+* un reporte final es el grupo de un resultado final
+* un reporte contiene:
+    * log de la ejecucion
+    * datos del AD en formato CSV
+    * experimento ejecutado
+
+* el sitema tiene servicios REST para:
+    * crear/ver/editar/eliminar experimentos
+    * iniciar/cancelar ejecucion de un experimento
+    * cancelar la ejecucion de todos los experimentos
+    * descargar reportes parciales y finales
+    * proveer autenticacion a todos los servicios
+
+* el sistema tiene una interfaz de usuario web

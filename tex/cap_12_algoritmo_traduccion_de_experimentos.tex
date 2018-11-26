@@ -1,0 +1,61 @@
+\section{Algoritmo de traduccion de experimentos}
+
+Esta seccion describe como un experimento es traducido a instrucciones que el PP2 pueda almacenar y ejcutar.
+
+Como mencionamos en el capitulo XX un programa almacenable y ejecutable por el PP2 es una secuencia de 
+instrucciones I1 .. IN con N no mayor a K, donde K esta relacionado al limite de memoria del mismo es de XX MB.
+
+Las instrucciones disponibles son:
+
+*continue
+*loop
+*retl
+*fin
+
+No todos los programas escritos con estas instrucciones son admitidos como validos para el PP2, 
+por esto tenemos las siguientes reglas que deben cumplir los programas ejecutables por el PP2.
+
+Regla 1:
+la instruccion fin siempre es la ultima instruccion.
+
+Regla 2:
+la intruccion fin aparece solo una vez.
+
+Regla 3:
+la intruccion fin siempre esta presente.
+
+Regla 4:
+un bloque siempre inicia con instruccion loop y finaliza con retl
+
+Regla 5:
+puede haber hasta 3 loops dentro de un loop
+
+Estas reglas definen el siguiente automata:
+
+
+
+Resultando en el siguiente algoritmo base: 
+
+
+traslate(P, L, S)
+
+    ins = next(P)
+
+    if ins = Continue:
+        S.append(ins)
+
+    if ins = Retl:
+        if(L!=0):
+            S.append(ins)
+            L--
+        else:
+            ret Error
+
+    if ins = Loop:
+        if(L<4):
+            S.append(ins)
+            L++
+        else:
+            ret Error
+    
+    ret S
