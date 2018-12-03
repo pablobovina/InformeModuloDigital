@@ -1,47 +1,48 @@
 \section{Planificacion de Testing}
 
 La planificacion de testing del sistema tiene varios enfoques en respuesta a diferentes objetivos:
-
-    * brindar una experiencia predecible y agradable al usuario final
-    * lograr una integracion coherente entre modulos
-    * aumentar cobertura de requerimientos de usuario y sistema
-    * facilitar la comprension del comportamiento esperado del sistema
-
+\begin{itemize}
+    \item brindar una experiencia predecible y agradable al usuario final
+    \item lograr una integracion coherente entre modulos
+    \item aumentar cobertura de requerimientos de usuario y sistema
+    \item facilitar la comprension del comportamiento esperado del sistema
+\end{itemize}
 Por unidad existen las siguientes validaciones:
-
-    Modulo Digital
-        
-        * entradas de configuracion para el PP2, DDS2 y AD
-        * entradas de programa ejecutable por el PP2
-        * existencia de conexion via interfaz USB durante la ejecucion de experimentos
-        * salidas de señales RF
-        * salidas de pulsos TTL
-        * input de conversion de datos del AD
-        * salida de reportes de los canales A y B.
-
-    Servidor
-
-        * autenticacion obligatoria en los servicios
-        * ejecucion secuencial de los experimentos
-        * aislamiento de espacio de trabajo de usuarios
-        * coherencia en los estados de los experimentos
-        * generacion de reportes
-        * gestion de procesos de ejecucion de experimentos
-
-    Interfaz de usuario web
-
-        * visualizacion coherente de elementos y estilos
-        * tiempos cortos de carga de las vistas
-        * visualizacion de alertas de usuario
-        * transiciones entre vistas
-
+\begin{itemize}
+    \item Modulo Digital
+    \begin{itemize}
+        \item entradas de configuracion para el PP2, DDS2 y AD
+        \item entradas de programa ejecutable por el PP2
+        \item existencia de conexion via interfaz USB durante la ejecucion de experimentos
+        \item salidas de señales RF
+        \item salidas de pulsos TTL
+        \item input de conversion de datos del AD
+        \item salida de reportes de los canales A y B.
+    \end{itemize}
+    \item Servidor
+    \begin{itemize}
+        \item autenticacion obligatoria en los servicios
+        \item ejecucion secuencial de los experimentos
+        \item aislamiento de espacio de trabajo de usuarios
+        \item coherencia en los estados de los experimentos
+        \item generacion de reportes
+        \item gestion de procesos de ejecucion de experimentos
+    \end{itemize}
+    \item Interfaz de usuario web
+    \begin{itemize}
+        \item visualizacion coherente de elementos y estilos
+        \item tiempos cortos de carga de las vistas
+        \item visualizacion de alertas de usuario
+        \item transiciones entre vistas
+    \end{itemize}
+\end{itemize}
 Dados los diferentes enfoques son necesarias se eligieron las siguientes para probar:
-
-    * Postman para simular comunicacion http con servicios REST
-    * Arduino para visualizar los pulsos TTL via Serial Plotter
-    * Osciloscopio para medir señales RF generadas en los experimentos.
-    * Generador de señales para simular adquisicion de datos del AD.
-    * Google Chrome y herramientas para validar estados de la interfaz grafica.
-    * Mock del servidor escrito en Flask-Python para simular servicios REST.
-
-    \newpage
+\begin{itemize}
+    \item Postman para simular comunicacion http con servicios REST
+    \item Arduino para visualizar los pulsos TTL via Serial Plotter
+    \item Osciloscopio para medir señales RF generadas en los experimentos.
+    \item Generador de señales para simular adquisicion de datos del AD.
+    \item Google Chrome y herramientas para validar estados de la interfaz grafica.
+    \item Mock del servidor escrito en Flask-Python para simular servicios REST.
+\end{itemize}
+\newpage

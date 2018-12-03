@@ -1,6 +1,20 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage[section]{placeins}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{dirtree}
+
+\algnewcommand\algorithmicassert{\texttt{assert}}
+\algnewcommand\Assert[1]{\State \algorithmicassert(#1)}%
+
+
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
 
 \begin{document}
 \input{cap_1_agradecimientos}
@@ -31,4 +45,5 @@
 \input{cap_26_limitaciones_plataforma}
 \input{cap_27_mejoras_a_futuro}
 \input{cap_28_analisis_de_esfuerzo}
+\input{cap_29_biblio.tex}
 \end{document}

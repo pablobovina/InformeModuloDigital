@@ -4,10 +4,35 @@ Existen ciertos elementos tanto humanos como materiales en la realizacion de un 
 simple aunque muy importante uso de datos, es decir que cada uno de estos elementos interactuan compartiendo
 informacion que pueden o no determinar acciones.
 
+\subsubsection{Pulso de radio frecuencia}
+Es una señal senoidal que tiene como objetivo
+estimular la muestra presente en el resonador
+y que puede ser manipulada previamente
+por otros modulos externos. Tiene los siguientes atributos:
+    \begin{itemize}
+        \item Frecuencia: 0-200 Mhz
+        \item Fase: 0-360º
+        \item Duracion: 16*10*12 Nanosegundos.
+    \end{itemize}
+
+\subsubsection{Pulso TTL}
+Es una señal digital de 5 voltios con la finalidad de contectarlo como entrada a otros aparatos digitales o analogicos para sicronizar el experimento.
+
 \subsection{Tipo de Experiencia}
 El tipo de experiencia a realizar esta determinada por el investigador y/o area, junto a parametros de planificacion
 como por ejemplo la duracion de la misma, la materia a estimular, el tipo de espectromentro, frecuencias
 de estimulacion, numero de instantaneas por periodos especificos, tiempos de estimulacion, relajacion, estabilizacion.
+
+\subsubsection{Experiencia Promedio}
+Una experiencia promedio es una que se repite sumando las muestras ordenadas una a una. Esta sumatoria es una tecnica que los investigadores utilizan para tener una mejor visualizacion de los
+resultados por las magnitudes pequeñas.
+
+\subsubsection{Experiencia Promedio con Pulso variable}
+Una experiencia promedio tiene la posibilidad
+de hacer variar las caracteristicas de los pulsos
+por cada repeticion que se realiza.
+Un Pulso puede variar en Fase y Demora si es necesario.
+
 
 \subsection{Sincronizacion}
 Algunas experiencias requieren o se complementan con la sincronia entre mudulos digitales de medicion via interfaces 

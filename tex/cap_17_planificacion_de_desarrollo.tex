@@ -4,54 +4,61 @@
 De acuerdo con los requerimientos descriptos en el capitulo XX se propone implementar el sistema
 con:
 
-    * Django framework - Pythton 2.7
-    * React js - Javascript ECM6
-    * Git
-
+\begin{itemize}
+    \item Django framework \item Pythton 2.7
+    \item React js \item Javascript ECM6
+    \item Git
+\end{itemize}
 Las tecnologias elegidas son ampliamente soportadas por la comunidad de desarrolladores, de codiglo libre y soporte multiplataforma en PC.
 
 Con el objetivo de asegurar que lo primero que se desarrolle cumpla son los requeriminetos asociados 
 con el control del Modulo Digital, luego proveer una manipulacion remota y finalmente una interfaz de
 usuario para el manejo a traves del navegador web, se organizo el desarrollo de la siguiente manera:
-
-    * Modulo Digital
-    * Servidor 
-    * Interfaz Grafica Web
-
+\begin{itemize}
+    \item Modulo Digital
+    \item Servidor 
+    \item Interfaz Grafica Web
+\end{itemize}
 El mapeo entre los requerimentos y el orden propuesto genera el siguiente esquema de tareas a realizar.
-
-    * Modulo Digital
-        - Configuracion del proyecto y entornos
-        - Implementacion control AD 
-        - Implementacion control DDS2
-        - Implementacion control PP2
-        - Implementacion abstraccion Experimento
-        - Implementacion de interfaz USB
-        - Implementacion de un programa principal
-        - Gestion de logs
-        - Integracion con Servidor
-
-    * Servidor
-        - Configuracion del proyecto y entornos
-        - Servicios REST para la edicion de experimentos
-        - Servicios REST para control de ejecucion de experimentos
-        - Servicios REST para la generacion de reportes
-        - Modelado de Base de datos 
-        - Configuracion de sesiones
-        - Configuracion de acceso a los servicios REST
-        - Gestion de logs
-        - Integracion con Interfaz WEB
-        - Integracion con Modulo Digital
+\begin{itemize}
     
-    * Interfaz WEB
-        - Configuracion de proyecto y entornos
-        - Implementacion de transiciones
-        - Componente de edicion de experimentos
-        - Componente de control de ejecucion de experimentos
-        - Componente de login
-        - Componente de visualizacion de errores
-        - Componente de definicion de experimento
-        - Implementacion de control de estados
-        - Integracion con Servidor
+    \item Modulo Digital
+    \begin{itemize}
+        \item Configuracion del proyecto y entornos
+        \item Implementacion control AD 
+        \item Implementacion control DDS2
+        \item Implementacion control PP2
+        \item Implementacion abstraccion Experimento
+        \item Implementacion de interfaz USB
+        \item Implementacion de un programa principal
+        \item Gestion de logs
+        \item Integracion con Servidor
+    \end{itemize}
 
-        \newpage
+    \item Servidor
+        \begin{itemize}
+        \item Configuracion del proyecto y entornos
+        \item Servicios REST para la edicion de experimentos
+        \item Servicios REST para control de ejecucion de experimentos
+        \item Servicios REST para la generacion de reportes
+        \item Modelado de Base de datos 
+        \item Configuracion de sesiones
+        \item Configuracion de acceso a los servicios REST
+        \item Gestion de logs
+        \item Integracion con Interfaz WEB
+        \item Integracion con Modulo Digital
+        \end{itemize}
+    \item Interfaz WEB
+        \begin{itemize}
+        \item Configuracion de proyecto y entornos
+        \item Implementacion de transiciones
+        \item Componente de edicion de experimentos
+        \item Componente de control de ejecucion de experimentos
+        \item Componente de login
+        \item Componente de visualizacion de errores
+        \item Componente de definicion de experimento
+        \item Implementacion de control de estados
+        \item Integracion con Servidor
+        \end{itemize}
+    \end{itemize}
+\newpage
