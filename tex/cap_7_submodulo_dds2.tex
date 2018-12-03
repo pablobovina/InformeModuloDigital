@@ -1,4 +1,84 @@
 \section{Submodulo DDS2}
 
-Esta seccion describe en detalle el funcionamiento del submodulo dds2
+El DDS2 es un generador de señales con un rango de frecuencia de 0 a 200 Mhz.
+
+El usuario puede almacenar hasta 2 frecuencias y un total de 16 valores de fase
+en la memoria para combinarlos en la ejecucion de un programa.
+
+Tambien hay una relacion entre el PP2 y el DDS2, puesto que este tiene como entrada
+los Pulsos 8,9,10,11,12,13,14 para su manipulacion externa por aquel durante
+la ejecucion de un programa.
+
+\subsection{almacenamiento de fases}
+
+El registro de RAM por fase es de 2 btyes, pero el valor de fase es un entero de 14 bits,
+por lo tanto los 4 bits mas significativos son ignorados.
+
+El MSB de una fase debe almacenarse siempre en una direccion par de la RAM, luego
+el LSB de la misma en el valor impar siguiente contiguo.
+
+Antes de almacenar el valor entero de la fase F debemos convertirlo a su equivalente
+en unidades de la siguiente manera:
+\noindent
+\begin{gather}
+        F_h \in \mathbb{N} \\
+        F_l \in \mathbb{N} \\
+        F \in \mathbb{N} \\
+        F_h = (45 * F) / 256 \\          
+        F_l = (45 * F) - (F_h * 256)
+\end{gather}
+
+
+
+
+\subsection{almacenamiento de frecuencias}
+
+
+
+\subsection{direccionamiento de fases}
+Se admiten hasta 16 valores de fase los cuales son direccionados con 4 bits
+correspondientes a los pulsos 11,12,13,14.
+
+\begin{itemize}
+    \item modo carga de fases habilitada
+    \item direccionamiento con pulsos 11,12,13,14
+    \item pulso 10
+    \item pulso 9
+\end{itemize}
+
+\subsection{direccionamiento de frecuencias}
+Se admiten hasta 2 frecuencias de trabajo, se seleccionan con el pulso 8.
+
+
+
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    Direccion  & Descripcion             & Modo      \\
+    \hline
+    0x70       & direccionamiento        & Escritura \\
+    \hline
+    0x71       & modo                    & Escritura \\
+    \hline
+    0x72       & reset                   & Escritura \\
+    \hline
+    0x73       & test                    & Lectura   \\
+    \hline
+    0x74       & se\~nal de escritura      & Escritura \\
+    \hline
+    0x75       & direccionamiento        & Escritura \\
+    \hline
+    0x76       & se\~nal de transferencia  & Escritura \\
+    \hline
+    0x77       & test                    & Lectura   \\
+    \hline
+    0x78       & se\~nal de escritura      & Escritura \\
+    \hline
+\end{tabular}
+\caption{\label{tab:tableTestCases}Resgistros internos del DDS2.}
+\end{table}
+
+
 \newpage
