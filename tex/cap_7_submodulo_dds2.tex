@@ -2,56 +2,14 @@
 
 El DDS2 es un generador de señales con un rango de frecuencia de 0 a 200 Mhz.
 
-El usuario puede almacenar hasta 2 frecuencias y un total de 16 valores de fase
-en la memoria para combinarlos en la ejecucion de un programa.
+El usuario puede almacenar hasta 2 frecuencias y un total de 16 fases para 
+combinarlos en la ejecucion de un programa.
 
 Tambien hay una relacion entre el PP2 y el DDS2, puesto que este tiene como entrada
 los Pulsos 8,9,10,11,12,13,14 para su manipulacion externa por aquel durante
 la ejecucion de un programa.
 
-\subsection{almacenamiento de fases}
-
-El registro de RAM por fase es de 2 btyes, pero el valor de fase es un entero de 14 bits,
-por lo tanto los 4 bits mas significativos son ignorados.
-
-El MSB de una fase debe almacenarse siempre en una direccion par de la RAM, luego
-el LSB de la misma en el valor impar siguiente contiguo.
-
-Antes de almacenar el valor entero de la fase F debemos convertirlo a su equivalente
-en unidades de la siguiente manera:
-\noindent
-\begin{gather}
-        F_h \in \mathbb{N} \\
-        F_l \in \mathbb{N} \\
-        F \in \mathbb{N} \\
-        F_h = (45 * F) / 256 \\          
-        F_l = (45 * F) - (F_h * 256)
-\end{gather}
-
-
-
-
-\subsection{almacenamiento de frecuencias}
-
-
-
-\subsection{direccionamiento de fases}
-Se admiten hasta 16 valores de fase los cuales son direccionados con 4 bits
-correspondientes a los pulsos 11,12,13,14.
-
-\begin{itemize}
-    \item modo carga de fases habilitada
-    \item direccionamiento con pulsos 11,12,13,14
-    \item pulso 10
-    \item pulso 9
-\end{itemize}
-
-\subsection{direccionamiento de frecuencias}
-Se admiten hasta 2 frecuencias de trabajo, se seleccionan con el pulso 8.
-
-
-
-
+\subsection{Registros del DDS2}
 \begin{table}[ht]
     \centering
     \begin{tabular}{|l|l|l|l|}
@@ -77,8 +35,139 @@ Se admiten hasta 2 frecuencias de trabajo, se seleccionan con el pulso 8.
     0x78       & se\~nal de escritura      & Escritura \\
     \hline
 \end{tabular}
-\caption{\label{tab:tableTestCases}Resgistros internos del DDS2.}
+\caption{\label{tab:registros_internos_dds2}Resgistros internos del DDS2.}
 \end{table}
 
+
+\subsection{Fases}
+
+El DDS2 tiene disponible 32 posiciones de 8 bits para el almacenamiento de fases
+y cuenta con un bus de 1 byte.
+
+El MSB de una fase debe almacenarse siempre en una direccion par de la RAM, luego
+el LSB de la misma en el valor impar siguiente contiguo.
+
+La fase es un valor de 14 bits, por lo que los 2 bits restantes del MSB son descartados.
+
+Antes de almacenar el valor entero de la fase F debemos convertirlo a su equivalente
+en unidades de 45 de la siguiente manera:
+\begin{gather}
+        F_h \in \mathbb{N} \\
+        F_l \in \mathbb{N} \\
+        F \in \mathbb{N} \\
+        F_h = (45 * F) / 256 \\          
+        F_l = (45 * F) - (F_h * 256)
+\end{gather}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+    direcciones ram disponibles              & Modo \\
+    \hline
+    0x00 0x02 0x04 0x06 0x08 0x0A 0x0C 0x0E  & 0x02 \\
+    \hline
+    0x10 0x12 0x14 0x016 0x18 0x1A 0x1C 0x1E & 0x02 \\
+    \hline
+\end{tabular}
+\caption{\label{tab:tableTestCases}Direcciones de Fase.}
+\end{table}
+
+\subsubsection{Algoritmo base de almacenamiento de fases}
+\begin{algorithm}[H]
+    \caption{almacenamiento de una fase en direccion 0x00}\label{algo_phases}
+    \begin{algorithmic}[1]
+    \Procedure{SavePhase}{F}
+    \State // {MSB y LSB de valor de fase}
+    \State $F_h = (45 * F) / 256$         
+    \State $F_l = (45 * F) - (F_h * 256)$
+    \State // {direcciones contiguas}
+    \State $dir_h \gets 0x00$
+    \State $dir_l \gets dir_h + 1$
+    \State // {Modo carga de fases}
+    \State $write(0x71, 0x02)$
+    \State // {MSB}
+    \State $write(0x70, dir_h)$ 
+    \State $write(0x74, f_h)$
+    \State // {LSB}
+    \State $write(0x70, dir_l)$
+    \State $write(0x74, f_l)$
+    \State // {Modo PC}
+    \State $write(0x71, 0x00)$
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{direccionamiento de fases}
+Los 16 valores de fase son direccionados con 4 pulsos correspondientes a los 
+pulsos 11,12,13,14. Con el pulso 9 se activa la carga de fases y con el pulso 10
+se transfiere la fase direccionada al registro de trabajo.
+El tiempo entre el pulso 9 y 10 debe ser menor a 100 nanosegundos.
+
+\subsection{Frecuencias}
+
+El DDS2 tiene disponible 12 registros internos de frecuencia, cada frecuencia ocupa 6 registros, 
+por lo tanto se pueden almacenar 2 frecuencias.
+
+Las frecuencias disponibles van de 0 a 200 Mhz y el valor que se almacena en los registros
+en representacion se obtiene con la siguiente calculo:
+\noindent
+\begin{gather}
+    clock = 2 \times 10^{6} \\
+    frec \in \mathbb{N} \land 0 < frec < clock\\
+    valor = frec \times (2^{48} -1 ) / clock
+\end{gather}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    Nro. Frecuencia    & Registros       & Modo \\
+    \hline
+     1 & 0x04 0x05 0x06 0x07 0x08 0x09   & 0x00 \\
+    \hline
+     2 & 0x0A 0x0B 0x0C 0x0D 0x0E 0x0F   & 0x00 \\
+    \hline
+\end{tabular}
+\caption{\label{tab:registros_frec}Registros de Frecuencia.}
+\end{table}
+
+\subsubsection{Algoritmo base de almacenamiento de frecuencias}
+\begin{algorithm}[H]
+    \caption{almacenamiento de una frecuecia de trabajo 1.}\label{algo_frec}
+    \begin{algorithmic}[1]
+    \Procedure{SaveFrequency}{F}
+    \State // {Conversion de la frecuencia deseada al valor}
+    \State $clock \gets 2 \times 10^{6}$
+    \State $value = frec \times (2^{48} -1 ) / clock $
+    \State // {Modo PC}
+    \State $write(0x71, 0x00)$
+    \State // {primero MSB hasta LSB}
+    \State // {Byte 5}
+    \State $write(0x75, 0x04)$ 
+    \State $write(0x78, value_5$
+    \State // {Byte 4}
+    \State $write(0x75, 0x05)$ 
+    \State $write(0x78, value_4$
+    \State // {Byte 3}
+    \State $write(0x75, 0x06)$ 
+    \State $write(0x78, value_3$
+    \State // {Byte 2}
+    \State $write(0x75, 0x07)$ 
+    \State $write(0x78, value_2$
+    \State // {Byte 1}
+    \State $write(0x75, 0x08)$ 
+    \State $write(0x78, value_1$
+    \State // {Byte 0}
+    \State $write(0x75, 0x09)$ 
+    \State $write(0x78, value_0$
+    \State // {Actualizacion registro de trabajo}
+    \State $write(0x76, 0x00)$
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{direccionamiento de frecuencias}
+Se admiten hasta 2 frecuencias de trabajo, se seleccionan con el pulso 8.
 
 \newpage
