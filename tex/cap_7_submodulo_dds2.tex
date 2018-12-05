@@ -9,6 +9,62 @@ Tambien hay una relacion entre el PP2 y el DDS2, puesto que este tiene como entr
 los Pulsos 8,9,10,11,12,13,14 para su manipulacion externa por aquel durante
 la ejecucion de un programa.
 
+\subsection{Configuracion inicial, activacion y desactivacion.}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+    Direccion  &B7 & B6 & B5 & B4& B3 & B2& B1 & B0 &Hex\\
+    \hline
+    1D  &0 & 0 & 0 & 1& 1 & 1& 1 & 1 &0x17\\
+    \hline
+    1E  &0 & 1 & 0 & 0& 0 & 1& 0 & 0 &0x44\\
+    \hline
+    1F  &0 & 0 & 0 & 0& 0 & 0& 1 & 0 & 0x02\\
+    \hline
+    20  &0 & 0 & 0 & 0 & 0 & 0& 0 & 0&0x00 \\
+    \hline
+    \end{tabular}
+    \caption{\label{tab:dds2_config_inicial}Reset}
+    \end{table}
+
+    \begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+    Direccion  &B7 & B6 & B5 & B4& B3 & B2& B1 & B0 &Hex\\
+    \hline
+    1D  &0 & 0 & 0 & 1& 0 & 0& 0 & 0 &0x10\\
+    \hline
+    1E  &0 & 1 & 0 & 0& 0 & 1& 0 & 0 &0x44\\
+    \hline
+    1F  &0 & 0 & 0 & 0& 0 & 0& 1 & 0 & 0x02\\
+    \hline
+    20  &0 & 0 & 0 & 0 & 0 & 0& 0 & 0&0x00 \\
+    \hline
+    \end{tabular}
+    \caption{\label{tab:dds2_activate}Activacion}
+    \end{table}
+    
+    \begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+    Direccion  &B7 & B6 & B5 & B4& B3 & B2& B1 & B0 &Hex\\
+    \hline
+    1D  &0 & 0 & 0 & 1& 1 & 1& 1 & 1 &0x17\\
+    \hline
+    1E  &0 & 1 & 0 & 0& 0 & 1& 0 & 0 &0x44\\
+    \hline
+    1F  &0 & 0 & 0 & 0& 0 & 0& 1 & 0 & 0x02\\
+    \hline
+    20  &0 & 0 & 0 & 0 & 0 & 0& 0 & 0&0x00 \\
+    \hline
+    \end{tabular}
+    \caption{\label{tab:dds2_deactivate}Desactivacion}
+    \end{table}
+
 \subsection{Registros del DDS2}
 \begin{table}[ht]
     \centering
@@ -145,22 +201,22 @@ en representacion se obtiene con la siguiente calculo:
     \State // {primero MSB hasta LSB}
     \State // {Byte 5}
     \State $write(0x75, 0x04)$ 
-    \State $write(0x78, value_5$
+    \State $write(0x78, value_5)$
     \State // {Byte 4}
     \State $write(0x75, 0x05)$ 
-    \State $write(0x78, value_4$
+    \State $write(0x78, value_4)$
     \State // {Byte 3}
     \State $write(0x75, 0x06)$ 
-    \State $write(0x78, value_3$
+    \State $write(0x78, value_3)$
     \State // {Byte 2}
     \State $write(0x75, 0x07)$ 
-    \State $write(0x78, value_2$
+    \State $write(0x78, value_2)$
     \State // {Byte 1}
     \State $write(0x75, 0x08)$ 
-    \State $write(0x78, value_1$
+    \State $write(0x78, value_1)$
     \State // {Byte 0}
     \State $write(0x75, 0x09)$ 
-    \State $write(0x78, value_0$
+    \State $write(0x78, value_0)$
     \State // {Actualizacion registro de trabajo}
     \State $write(0x76, 0x00)$
     \EndProcedure

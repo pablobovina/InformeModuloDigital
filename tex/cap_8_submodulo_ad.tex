@@ -1,2 +1,86 @@
 \section{Submodulo AD}
+
+El submodulo conversor analogico digital (AD) tiene 2 canales de adquisicion,
+con una resolucion de 12 bits por canal, una frecuencia de muestreo maxima de 10 Mhz 
+y capacidad de almacenamiento en bloques de 1K,2K,4K,8K,16K,32K,64K,128K.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+    Direccion   & Descripcion       & modo\\
+    \hline
+     0x0B       & comando y control & lectura/escritura\\ 
+    \hline
+     0x0C       & muestreo          & escritura\\
+     \hline
+     0x08       & canal B           &lectura   \\
+     \hline
+     0x09       & canal AB          &lectura   \\
+     \hline
+     0x0A       & canal A           &lectura   \\
+     \hline
+\end{tabular}
+\caption{\label{tab:registros_ad} Registros del AD}
+\end{table}
+
+\subsection{Registro de comando}
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+    Bit    & Descripcion \\
+    \hline
+     0 & modo\\ 
+    \hline
+     1 & modo\\
+     \hline
+     2 & - \\
+     \hline
+     3 & - \\
+     \hline
+     4 & bloque \\
+     \hline
+     5 & bloque \\
+     \hline
+     6 & bloque \\
+     \hline
+     7 & reset \\
+     \hline
+\end{tabular}
+\caption{\label{tab:registros_ad_cmd}Registro de comando.}
+\end{table}
+
+\subsection{Registro de datos}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+    Direccion & Descripcion \\
+    \hline
+     0x08 & canal B\\ 
+    \hline
+     0x09 & canal AB\\
+     \hline
+     0x0A & canal A\\
+\end{tabular}
+\caption{\label{tab:registros_ad_datos}Registros de datos.}
+\end{table}
+
+
+\subsection{Configuracion de un ciclo de adquisicion}
+
+
+
+
+
+
+
+
+\subsection{Extraccion de los datos de la memoria interna}
+
+El bus de datos de la memoria del AD es de 8 bits 
+
+
 \newpage
