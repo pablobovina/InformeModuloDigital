@@ -8,17 +8,17 @@ y capacidad de almacenamiento en bloques de 1K,2K,4K,8K,16K,32K,64K,128K.
     \centering
     \begin{tabular}{|l|l|l|}
     \hline
-    Direccion   & Descripcion       & modo\\
+     Direccion   & Descripcion       & modo\\
     \hline
-     0x0B       & comando y control & lectura/escritura\\ 
+     0x0B        & comando y control & lectura/escritura\\ 
     \hline
-     0x0C       & muestreo          & escritura\\
+     0x0C        & muestreo          & escritura\\
      \hline
-     0x08       & canal B           &lectura   \\
+     0x08        & canal B           &lectura   \\
      \hline
-     0x09       & canal AB          &lectura   \\
+     0x09        & canal AB          &lectura   \\
      \hline
-     0x0A       & canal A           &lectura   \\
+     0x0A        & canal A           &lectura   \\
      \hline
 \end{tabular}
 \caption{\label{tab:registros_ad} Registros del AD}
@@ -64,6 +64,7 @@ y capacidad de almacenamiento en bloques de 1K,2K,4K,8K,16K,32K,64K,128K.
      0x09 & canal AB\\
      \hline
      0x0A & canal A\\
+     \hline
 \end{tabular}
 \caption{\label{tab:registros_ad_datos}Registros de datos.}
 \end{table}
@@ -71,16 +72,117 @@ y capacidad de almacenamiento en bloques de 1K,2K,4K,8K,16K,32K,64K,128K.
 
 \subsection{Configuracion de un ciclo de adquisicion}
 
+Un ciclo de adquisicion requiere la configuracion del intervalo de muestreo
+de acuerdo a la siguiente formula:
+\begin{gather}
+period = 100 ns\\
+interval \in \mathbb{N} \land 0 < interval < 25500\\
+n = interval / period\\
+delta  = 255 - n\\
+\end{gather}
 
+\subsubsection{Configuracion bloque de 1K muestreo 1 micro seg}
 
+\begin{algorithm}
+    \caption{Configuracion 1K 1micro}\label{algo_ad_conf}
+    \begin{algorithmic}[1]
+    \Procedure{Setup}{}
+    \State
+    \State $config \gets 0x00$
+    \State $config \gets config \lor 0x02$
+    \State $config \gets config \lor 0x80$
+    \State $config \gets config \land 0xFE$
+    \State $write(0x0B, config)$
+    \State
+    \State $config \gets 0x00$
+    \State $config \gets config \lor 0x02$
+    \State $config \gets config \land 0x7F$
+    \State $config \gets config \lor 0x01$
+    \State $write(0x0B, config)$
+    \State
+    \State $samples= 1000 / 100$
+    \State $delta = 255 - samples$
+    \State $write(0x0C, delta)$
 
-
-
-
-
+    \EndProcedure
+    \end{algorithmic}
+    \end{algorithm}
+    \newpage
 \subsection{Extraccion de los datos de la memoria interna}
 
-El bus de datos de la memoria del AD es de 8 bits 
+El bus de datos de la memoria del AD es de 8 bits y las muestras de 12 bits,
+siendo necesarias 3 lecturas de 8 bits y una operacion de particion para
+obtener la muestra final de los canales A y B.
+
+\begin{figure}[!htb].
+    \includegraphics[width=\linewidth]{../figures/d8.jpg}
+    \caption{Buffers del submodulo AD}
+    \label{fig:d8}
+\end{figure}
+
+Para la extraccion de los datos es necesaria esta serie de pasos:
+
+\begin{itemize}
+    \item modo PC, deshabilitada la adquisicion y reset contador de direcciones
+    \item modo PC, deshabilitada la adquisicion y contador de direcciones en modo normal
+    \item lectura del registro 0x08 del canal B
+    \item modo PC, deshabilitada la adquisicion y reset contador de direcciones
+    \item modo PC, deshabilitada la adquisicion y contador de direcciones en modo normal
+    \item lectura del registro 0x0A del canal A
+    \item modo PC, deshabilitada la adquisicion y reset contador de direcciones
+    \item modo PC, deshabilitada la adquisicion y contador de direcciones en modo normal
+    \item lectura del registro 0x09 con nibles del canal A y B.
+    \item armado de los datos de los respectivos canales.
+\end{itemize}
+
+\begin{algorithm}
+    \caption{Extraccion de datos}\label{algo_ad_data}
+    \begin{algorithmic}[1]
+    \Procedure{Setup}{}
+   
+    \State $config \gets 0x00$
+    \State $config \gets config \lor 0x02$
+    \State $config \gets config \lor 0x80$
+    \State $config \gets config \land 0xFE$
+    \State $write(0x0B, config)$
+    \State $config \gets 0x00$
+    \State $config \gets config \lor 0x02$
+    \State $config \gets config \land 0x7F$
+    \State $config \gets config \land 0xFE$
+    \State $write(0x0B, config)$
+    \State $A \gets read(0x08)$
+    \State
+    \State $config \gets 0x00$
+    \State $config \gets config \lor 0x02$
+    \State $config \gets config \lor 0x80$
+    \State $config \gets config \land 0xFE$
+    \State $write(0x0B, config)$
+    \State $config \gets 0x00$
+    \State $config \gets config \lor 0x02$
+    \State $config \gets config \land 0x7F$
+    \State $config \gets config \land 0xFE$
+    \State $write(0x0B, config)$
+    \State $B \gets read(0x0A)$
+    \State
+    \State $config \gets 0x00$
+    \State $config \gets config \lor 0x02$
+    \State $config \gets config \lor 0x80$
+    \State $config \gets config \land 0xFE$
+    \State $write(0x0B, config)$
+    \State $config \gets 0x00$
+    \State $config \gets config \lor 0x02$
+    \State $config \gets config \land 0x7F$
+    \State $config \gets config \land 0xFE$
+    \State $write(0x0B, config)$
+    \State $AB \gets read(0x09)$
+    \State
+    \State $sample\_A \gets join\_buffers(A, AB)$
+    \State $sample\_B \gets join\_buffers(B, AB)$
+
+    \EndProcedure
+    \end{algorithmic}
+    \end{algorithm}
+
 
 
 \newpage
