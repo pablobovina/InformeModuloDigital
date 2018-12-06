@@ -2,31 +2,139 @@
 
 El programador de pulsos funciona como un microprocesador de instrucciones que generan
 un patron de salida por un tiempo determinado.
-
+\\\\
 Un patron de salida es una combinacion de 16 pulsos TTL en paralelo por un periodo 
 de tiempo determinado.
+\\\\
+Un programa ejecutable por el PP2 sera una secuencia de no mas de 512 instrucciones 
+y la ejecucion derivara en una secuencia de pulsos de duracion determinada.
 
-Un programa ejecutable por el PP2 sera una secuencia de instrucciones y la ejecucion
-derivara en una secuencia de pulsos de duracion determinada.
+\subsection{Instrucciones}
 
+El PP2 tiene 4 instrucciones basicas: Continue, RetL, Loop, End, 
+cada una es una secuencia de 64 bits con la siguiente estrucutura:\\
 \begin{table}[ht]
     \centering
-    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+    \begin{tabular}{|l|l|l|l|l|l|l|}
     \hline
-    Nombre   & Descripcion                   &Patron  & Dato & Nivel de lazo & Codigo de instruccion & Demora \\
-    \hline 
-    Continue & genera una salida de pulsos   &        &no utilizado         & 0x01                  &        \\
+    Patron de salida  & Dato & Nivel de lazo & Codigo de instruccion & Demora \\
     \hline
-    Loop     & marca inicio de un bucle      &        &numero de repeticiones& 0x02                  &        \\
-    \hline
-    Retl     & marca el fin de un bucle      &        &direccion del bucle   & 0x03                  &        \\
-    \hline
-    End      & marca el fin de un programa   &        &no utilizado          & 0x07                  &        \\
+    16 bits & 11 bits & 2 bits & 3 bits & 32 bits\\
     \hline
 \end{tabular}
-\caption{\label{tab:pp2_ins}Instrucciones del PP2}
+\caption{\label{tab:pp2_ins}Estructura de las instrucciones.}
 \end{table}
 
 
+\subsubsection{Duracion de una instruccion}
+La base de tiempo es 40ns ( nanosegundos. 1ns = 1* 10 EXP –9 seg.) 
+Cada instrucción requiere de 4 pulsos de reloj ( 4 * 40ns = 160ns) 
+y la demora mínima es 2 ( 2 * 40ns = 80ns). Por lo tanto el pulso de
+valle mínimo es de 160ns + 80ns = 240ns.
 
+\subsubsection{Continue}
+Mantiene una combinacion de 16 pulsos de salida por un tiempo determinado.
+\begin{itemize}
+    \item patron de salida: es la combinacion de 16 pulsos de salida.
+    \item dato: no utilizado.
+    \item nivel de lazo: no utilizado.
+    \item codigo de instruccion: 0x01.
+    \item demora: duracion de la instruccion.
+\end{itemize}
+
+\subsubsection{Loop}
+Marca el inicio de un bloque de repeticion.
+\begin{itemize}
+    \item patron de salida: es la combinacion de 16 pulsos de salida.
+    \item dato: contador de repeticiones.
+    \item nivel de lazo: nivel de anidamiento entre lazos
+    \item codigo de instruccion: 0x02.
+    \item demora: duracion de la instruccion.
+\end{itemize}
+
+\subsubsection{Retl}
+Marca de fin de un bloque de repeticion.
+\begin{itemize}
+    \item patron de salida: es la combinacion de 16 pulsos de salida.
+    \item dato: direccion de la instruccion Loop de inicio.
+    \item nivel de lazo: no utilizado.
+    \item codigo de instruccion: 0x03.
+    \item demora: duracion de la instruccion.
+\end{itemize}
+
+\subsubsection{End}
+Finaliza la secuencia de pulsos.
+\begin{itemize}
+    \item patron de salida: es la combinacion de 16 pulsos de salida.
+    \item dato: no utilizado.
+    \item nivel de lazo: no utilizado.
+    \item codigo de instruccion: 0x07.
+    \item demora: duracion de la instruccion.
+\end{itemize}
+
+\subsection{Registros del PP2}
+
+El PP2 cuenta con los siguientes registros de 8 bits:
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    Direccion  & Descripcion & modo  \\
+    \hline
+    0x50 & comando & escritura\\
+    \hline
+    0x51 & carga   & escritura\\
+    \hline
+    0x52 & señal   & escritura \\
+    \hline
+\end{tabular}
+\caption{\label{tab:pp2_ins}Estructura de las instrucciones.}
+\end{table}
+\newpage
+\subsubsection{Carga de una instruccion en el PP2.}
+\begin{algorithm}
+    \caption{Carga de una instruccion en el PP2}\label{algo_pp2_load}
+    \begin{algorithmic}[1]
+    \Procedure{UploadProgram}{}
+    \State // {Reset}
+    \State $write(0x50, 0x02)$
+    \State // {Modo carga}
+    \State $write(0x50, 0x03)$
+    \State // {Continue 0x55AA 4}
+    \State $write(0x51, 0x04)$
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0x01)$
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0xAA)$
+    \State $write(0x51,0x55)$
+    \State $write(0x52, 0x00)$
+    \State // {End}
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0x00)$
+    \State $write(0x51,0x00)$
+    \State $write(0x52,0x00)$
+    \EndProcedure
+    \end{algorithmic}
+    \end{algorithm}
+
+\subsubsection{Ejecutar un programa.}
+\begin{algorithm}
+    \caption{Ejecutar un programa.}\label{algo_pp2_exe}
+    \begin{algorithmic}[1]
+    \Procedure{Setup}{}
+    \State // {Modo microprocesador}
+    \State $write(0x50, 0x00)$
+    \State // {Señal de ejecucion}
+    \State $write(0x08)$
+    \EndProcedure
+    \end{algorithmic}
+    \end{algorithm}
 \newpage
