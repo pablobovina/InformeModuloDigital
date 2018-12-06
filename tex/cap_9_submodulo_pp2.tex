@@ -1,2 +1,32 @@
 \section{Submodulo PP2}
+
+El programador de pulsos funciona como un microprocesador de instrucciones que generan
+un patron de salida por un tiempo determinado.
+
+Un patron de salida es una combinacion de 16 pulsos TTL en paralelo por un periodo 
+de tiempo determinado.
+
+Un programa ejecutable por el PP2 sera una secuencia de instrucciones y la ejecucion
+derivara en una secuencia de pulsos de duracion determinada.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+    \hline
+    Nombre   & Descripcion                   &Patron  & Dato & Nivel de lazo & Codigo de instruccion & Demora \\
+    \hline 
+    Continue & genera una salida de pulsos   &        &no utilizado         & 0x01                  &        \\
+    \hline
+    Loop     & marca inicio de un bucle      &        &numero de repeticiones& 0x02                  &        \\
+    \hline
+    Retl     & marca el fin de un bucle      &        &direccion del bucle   & 0x03                  &        \\
+    \hline
+    End      & marca el fin de un programa   &        &no utilizado          & 0x07                  &        \\
+    \hline
+\end{tabular}
+\caption{\label{tab:pp2_ins}Instrucciones del PP2}
+\end{table}
+
+
+
 \newpage
