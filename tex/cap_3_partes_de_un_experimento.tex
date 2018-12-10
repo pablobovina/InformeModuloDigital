@@ -1,8 +1,8 @@
 \section{Partes de un experimento}
 
-Existen ciertos elementos tanto humanos como materiales en la realizacion de un experimento junto con un 
-simple aunque muy importante uso de datos, es decir que cada uno de estos elementos interactuan compartiendo
-informacion que pueden o no determinar acciones.
+Estos son algunos conceptos clave para comprender el contexto y definicion de un
+experimento, los cuales se tuvieron en cuenta al momento de la implementacion 
+del sistema.
 
 \subsubsection{Pulso de radio frecuencia}
 Es una señal senoidal que tiene como objetivo
@@ -10,32 +10,28 @@ estimular la muestra presente en el resonador
 y que puede ser manipulada previamente
 por otros modulos externos. Tiene los siguientes atributos:
     \begin{itemize}
-        \item Frecuencia: 0 a 200 Mhz
-        \item Fase: 0 a 360 grados
-        \item Duracion: $16*10^{12}$ Nanosegundos.
+        \item Frecuencia: 0 a 200 megahercios.
+        \item Fase: 0 a 360 grados.
+        \item Duracion: 0 a 16 segundos.
     \end{itemize}
 
 \subsubsection{Pulso TTL}
-Es una señal digital de 5 voltios con la finalidad de contectarlo como entrada a otros aparatos digitales o analogicos para sicronizar el experimento.
+Es una señal digital de 5 voltios con la finalidad de trasmitirla como entrada a otros aparatos digitales o analogicos para sicronizar momentos de relajacion y estimulacion de las muestras durante la experiencia.
+
+\subsubsection{Muestras}
+Las muestras son un grupo de datos obtenidos a cierta frecuenta de muestreo y agrupados de manera contigua 
+en un bloque de longitud $2^{n}$ con $n \in \mathbb{N}$. 
 
 \subsection{Tipo de Experiencia}
-El tipo de experiencia a realizar esta determinada por el investigador y/o area, junto a parametros de planificacion
-como por ejemplo la duracion de la misma, la materia a estimular, el tipo de espectromentro, frecuencias
-de estimulacion, numero de instantaneas por periodos especificos, tiempos de estimulacion, relajacion, estabilizacion.
+El tipo de experiencia a realizar esta determinada por el investigador, existen 2 bien difrenciadas:
 
 \subsubsection{Experiencia Promedio}
-Una experiencia promedio es una que se repite sumando las muestras ordenadas una a una. Esta sumatoria es una tecnica que los investigadores utilizan para tener una mejor visualizacion de los
-resultados por las magnitudes pequeñas.
+Una experiencia promedio es una que se repite y donde los bloques de muestras ordenadas se suman uno a uno obteniendo
+una mejor representacion los datos para su analisis.
 
 \subsubsection{Experiencia Promedio con Pulso variable}
-Una experiencia promedio tiene la posibilidad
-de hacer variar las caracteristicas de los pulsos
-por cada repeticion que se realiza.
-Un Pulso puede variar en Fase y Demora si es necesario.
-
-
-\subsection{Sincronizacion}
-Algunas experiencias requieren o se complementan con la sincronia entre mudulos digitales de medicion via interfaces 
-digitales.
+Es una experiencia promedio donde la configuracion de los pulsos cambia en las sucesivas iteraciones de la experiencia.
+Los pulsos cambian su configuracion para suprimir interferencias de estimulaciones previas y obtener mediciones
+mas precisas. Los atributos del pulso que pueden cambiar en las sucesivas iteraciones son la fase y duracion. 
 
 \newpage
