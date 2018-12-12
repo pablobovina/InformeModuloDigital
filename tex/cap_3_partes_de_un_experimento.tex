@@ -10,13 +10,13 @@ estimular la muestra presente en el resonador
 y que puede ser manipulada previamente
 por otros modulos externos. Tiene los siguientes atributos:
     \begin{itemize}
-        \item Frecuencia: 0 a 200 megahercios.
+        \item Frecuencia: 0 a 120 megahercios.
         \item Fase: 0 a 360 grados.
         \item Duracion: 0 a 16 segundos.
     \end{itemize}
 
 \subsubsection{Pulso TTL}
-Es una señal digital de 5 voltios con la finalidad de trasmitirla como entrada a otros aparatos digitales o analogicos para sicronizar momentos de relajacion y estimulacion de las muestras durante la experiencia.
+Es una señal digital de amplitud 5V y duración predefinida con la finalidad de trasmitirla como entrada a otros aparatos digitales o analogicos para sicronizar momentos de relajacion y estimulacion de las muestras durante la experiencia.
 
 \subsubsection{Muestras}
 Las muestras son un grupo de datos obtenidos a cierta frecuenta de muestreo y agrupados de manera contigua 
@@ -30,7 +30,7 @@ Una experiencia promedio es una que se repite y donde los bloques de muestras or
 una mejor representacion los datos para su analisis.
 
 \subsubsection{Experiencia Promedio con Pulso variable}
-Es una experiencia promedio donde la configuracion de los pulsos cambia en las sucesivas iteraciones de la experiencia.
+Es una experiencia promedio donde la configuracion de los pulsos cambia en las sucesivas iteraciones de la misma.
 Los pulsos cambian su configuracion para suprimir interferencias de estimulaciones previas y obtener mediciones
 mas precisas. Los atributos del pulso que pueden cambiar en las sucesivas iteraciones son la fase y duracion. 
 

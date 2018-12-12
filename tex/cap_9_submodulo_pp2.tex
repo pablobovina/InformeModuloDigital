@@ -1,6 +1,6 @@
 \section{Submodulo PP2}
 
-El programador de pulsos funciona como un microprocesador de instrucciones que generan
+El programador de pulsos es un microprocesador diseñado a medida con instrucciones que generan
 un patron de salida por un tiempo determinado.
 \\\\
 Un patron de salida es una combinacion de 16 pulsos TTL en paralelo por un periodo 
@@ -27,10 +27,10 @@ cada una es una secuencia de 64 bits con la siguiente estrucutura:\\
 
 
 \subsubsection{Duracion de una instruccion}
-La base de tiempo es 40ns ( nanosegundos. 1ns = 1* 10 EXP –9 seg.) 
-Cada instrucción requiere de 4 pulsos de reloj ( 4 * 40ns = 160ns) 
-y la demora mínima es 2 ( 2 * 40ns = 80ns). Por lo tanto el pulso de
-valle mínimo es de 160ns + 80ns = 240ns.
+La base de tiempo es 40 nanosegundos. ($1ns = 1*10^{–9}$ segundos) 
+Cada instrucción requiere de 4 pulsos de reloj ($4 * 40ns = 160ns$) 
+y la demora mínima es 2 ($2 * 40ns = 80ns$). Por lo tanto el pulso de
+valle mínimo es de $160ns + 80ns = 240ns$.
 
 \subsubsection{Continue}
 Mantiene una combinacion de 16 pulsos de salida por un tiempo determinado.
