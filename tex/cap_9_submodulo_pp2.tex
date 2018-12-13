@@ -1,23 +1,23 @@
-\section{Submodulo PP2}
+\section{Subm\'odulo PP2}
 
-El programador de pulsos es un microprocesador diseñado a medida con instrucciones que generan
-un patron de salida por un tiempo determinado.
+El programador de pulsos es un microprocesador dise\~nado a medida con instrucciones que generan
+un patr\'on de salida por un tiempo determinado.
 \\\\
-Un patron de salida es una combinacion de 16 pulsos TTL en paralelo por un periodo 
+Un patr\'on de salida es una combinaci\'on de 16 pulsos TTL en paralelo por un periodo 
 de tiempo determinado.
 \\\\
 Un programa ejecutable por el PP2 sera una secuencia de no mas de 512 instrucciones 
-y la ejecucion derivara en una secuencia de pulsos de duracion determinada.
+y la ejecuci\'on derivara en una secuencia de pulsos de duraci\'on determinada.
 
 \subsection{Instrucciones}
 
-El PP2 tiene 4 instrucciones basicas: Continue, RetL, Loop, End, 
+El PP2 tiene 4 instrucciones b\'asicas: Continue, Retl, Loop, End, 
 cada una es una secuencia de 64 bits con la siguiente estrucutura:\\
 \begin{table}[ht]
     \centering
     \begin{tabular}{|l|l|l|l|l|l|l|}
     \hline
-    Patron de salida  & Dato & Nivel de lazo & Codigo de instruccion & Demora \\
+    Patr\'on de salida  & Dato & Nivel de lazo & Codigo de instrucci\'on & Demora \\
     \hline
     16 bits & 11 bits & 2 bits & 3 bits & 32 bits\\
     \hline
@@ -26,50 +26,49 @@ cada una es una secuencia de 64 bits con la siguiente estrucutura:\\
 \end{table}
 
 
-\subsubsection{Duracion de una instruccion}
-La base de tiempo es 40 nanosegundos. ($1ns = 1*10^{–9}$ segundos) 
-Cada instrucción requiere de 4 pulsos de reloj ($4 * 40ns = 160ns$) 
-y la demora mínima es 2 ($2 * 40ns = 80ns$). Por lo tanto el pulso de
-valle mínimo es de $160ns + 80ns = 240ns$.
+\subsubsection{Duraci\'on de una instrucci\'on}
+Cada instrucci\'on requiere de 4 pulsos de reloj ($4 * 40ns = 160ns$) 
+y la demora m\'inima es 2 pulsos ($2 * 40ns = 80ns$). Por lo tanto el pulso de
+valle m\'inimo es de $160ns + 80ns = 240ns$.
 
 \subsubsection{Continue}
-Mantiene una combinacion de 16 pulsos de salida por un tiempo determinado.
+Mantiene una combinaci\'on de 16 pulsos de salida por un tiempo determinado.
 \begin{itemize}
-    \item patron de salida: es la combinacion de 16 pulsos de salida.
+    \item patr\'on de salida: es la combinaci\'on de 16 pulsos de salida.
     \item dato: no utilizado.
     \item nivel de lazo: no utilizado.
-    \item codigo de instruccion: 0x01.
-    \item demora: duracion de la instruccion.
+    \item c\'odigo de instruccion: 0x01.
+    \item demora: duraci\'on de la instrucci\'on.
 \end{itemize}
 
 \subsubsection{Loop}
-Marca el inicio de un bloque de repeticion.
+Marca el inicio de un bloque de repetici\'on.
 \begin{itemize}
-    \item patron de salida: es la combinacion de 16 pulsos de salida.
+    \item patr\'on de salida: es la combinaci\'on de 16 pulsos de salida.
     \item dato: contador de repeticiones.
     \item nivel de lazo: nivel de anidamiento entre lazos
-    \item codigo de instruccion: 0x02.
-    \item demora: duracion de la instruccion.
+    \item c\'odigo de instrucci\'on: 0x02.
+    \item demora: duraci\'on de la instrucci\'on.
 \end{itemize}
 
 \subsubsection{Retl}
-Marca de fin de un bloque de repeticion.
+Marca de fin de un bloque de repetici\'on.
 \begin{itemize}
-    \item patron de salida: es la combinacion de 16 pulsos de salida.
-    \item dato: direccion de la instruccion Loop de inicio.
+    \item patron de salida: es la combinaci\'on de 16 pulsos de salida.
+    \item dato: direcci\'on de la instrucci\'on Loop de inici\'o.
     \item nivel de lazo: no utilizado.
-    \item codigo de instruccion: 0x03.
-    \item demora: duracion de la instruccion.
+    \item c\'odigo de instrucci\'on: 0x03.
+    \item demora: duraci\'on de la instrucci\'on.
 \end{itemize}
 
 \subsubsection{End}
 Finaliza la secuencia de pulsos.
 \begin{itemize}
-    \item patron de salida: es la combinacion de 16 pulsos de salida.
+    \item patr\'on de salida: es la combinaci\'on de 16 pulsos de salida.
     \item dato: no utilizado.
     \item nivel de lazo: no utilizado.
-    \item codigo de instruccion: 0x07.
-    \item demora: duracion de la instruccion.
+    \item c\'odigo de instrucci\'on: 0x07.
+    \item demora: duraci\'on de la instrucci\'on.
 \end{itemize}
 
 \subsection{Registros del PP2}

@@ -1,14 +1,14 @@
-\section{Submodulo AD}
+\section{Subm\'odulo AD}
 
-El submodulo conversor analogico digital (AD) tiene 2 canales de adquisicion,
-con una resolucion de 12 bits por canal, una frecuencia de muestreo maxima de 10 Mhz 
+El subm\'odulo conversor anal\'ogico digital (AD) tiene 2 canales de adquisici\'on,
+con una resoluci\'on de 12 bits por canal, una frecuencia de muestreo m\'axima de 10 Mhz 
 y capacidad de almacenamiento en bloques de 1KB,2KB,4KB,8KB,16KB,32KB,64KB,128KB.
 
 \begin{table}[ht]
     \centering
     \begin{tabular}{|l|l|l|}
     \hline
-     Direccion   & Descripcion       & modo\\
+     Direcci\'on   & Descripci\'on   & modo\\
     \hline
      0x0B        & comando y control & lectura/escritura\\ 
     \hline
@@ -29,7 +29,7 @@ y capacidad de almacenamiento en bloques de 1KB,2KB,4KB,8KB,16KB,32KB,64KB,128KB
     \centering
     \begin{tabular}{|l|l|l|}
     \hline
-    Bit    & Descripcion \\
+    Bit    & Descripci\'on \\
     \hline
      0 & modo\\ 
     \hline
@@ -70,10 +70,10 @@ y capacidad de almacenamiento en bloques de 1KB,2KB,4KB,8KB,16KB,32KB,64KB,128KB
 \end{table}
 
 
-\subsection{Configuracion de un ciclo de adquisicion}
+\subsection{Configuraci\'on de un ciclo de adquisici\'on}
 
-Un ciclo de adquisicion requiere la configuracion del intervalo de muestreo
-de acuerdo a la siguiente formula:
+Un ciclo de adquisici\'on requiere la configuraci\'on del intervalo de muestreo
+de acuerdo a la siguiente f\'ormula:
 \begin{gather}
 period = 100 ns\\
 interval \in \mathbb{N} \land 0 < interval < 25500\\
@@ -81,10 +81,10 @@ n = interval / period\\
 delta  = 255 - n\\
 \end{gather}
 
-\subsubsection{Configuracion bloque de 1K muestreo 1 micro seg}
+\subsubsection{Configuraci\'on bloque de 1K muestreo 1 micro seg}
 
 \begin{algorithm}
-    \caption{Configuracion 1K 1micro}\label{algo_ad_conf}
+    \caption{Configuraci\'on 1K 1micro}\label{algo_ad_conf}
     \begin{algorithmic}[1]
     \Procedure{Setup}{}
     \State
@@ -108,35 +108,35 @@ delta  = 255 - n\\
     \end{algorithmic}
     \end{algorithm}
     \newpage
-\subsection{Extraccion de los datos de la memoria interna}
+\subsection{Extracci\'on de los datos de la memoria interna}
 
 El bus de datos de la memoria del AD es de 8 bits y las muestras de 12 bits,
-siendo necesarias 3 lecturas de 8 bits y una operacion de particion para
+siendo necesarias 3 lecturas de 8 bits y una operaci\'on de partici\'on para
 obtener la muestra final de los canales A y B.
 
 \begin{figure}[!htb].
     \includegraphics[width=\linewidth]{../figures/d8.jpg}
-    \caption{Buffers del submodulo AD}
+    \caption{Buffers del subm\'odulo AD}
     \label{fig:d8}
 \end{figure}
 
-Para la extraccion de los datos es necesaria esta serie de pasos:
+Para la extracci\'on de los datos es necesaria esta serie de pasos:
 
 \begin{itemize}
-    \item modo PC, deshabilitada la adquisicion y reset contador de direcciones
-    \item modo PC, deshabilitada la adquisicion y contador de direcciones en modo normal
+    \item modo PC, deshabilitada la adquisici\'on y reset contador de direcciones
+    \item modo PC, deshabilitada la adquisici\'on y contador de direcciones en modo normal
     \item lectura del registro 0x08 del canal B
-    \item modo PC, deshabilitada la adquisicion y reset contador de direcciones
-    \item modo PC, deshabilitada la adquisicion y contador de direcciones en modo normal
+    \item modo PC, deshabilitada la adquisici\'on y reset contador de direcciones
+    \item modo PC, deshabilitada la adquisici\'on y contador de direcciones en modo normal
     \item lectura del registro 0x0A del canal A
-    \item modo PC, deshabilitada la adquisicion y reset contador de direcciones
-    \item modo PC, deshabilitada la adquisicion y contador de direcciones en modo normal
-    \item lectura del registro 0x09 con nibles del canal A y B.
+    \item modo PC, deshabilitada la adquisici\'on y reset contador de direcciones
+    \item modo PC, deshabilitada la adquisici\'on y contador de direcciones en modo normal
+    \item lectura del registro 0x09 con nibbles del canal A y B.
     \item armado de los datos de los respectivos canales.
 \end{itemize}
 
 \begin{algorithm}
-    \caption{Extraccion de datos}\label{algo_ad_data}
+    \caption{Extracci\'on de datos}\label{algo_ad_data}
     \begin{algorithmic}[1]
     \Procedure{Setup}{}
    
