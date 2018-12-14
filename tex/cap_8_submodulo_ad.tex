@@ -1,8 +1,8 @@
 \section{Subm\'odulo AD}
 
-El subm\'odulo conversor anal\'ogico digital (AD) tiene 2 canales de adquisici\'on,
+El subm\'odulo conversor anal\'ogico digital AD tiene 2 canales de adquisici\'on en paralelo
 con una resoluci\'on de 12 bits por canal, una frecuencia de muestreo m\'axima de 10 Mhz 
-y capacidad de almacenamiento en bloques de 1KB,2KB,4KB,8KB,16KB,32KB,64KB,128KB.
+y capacidad de almacenamiento en bloques de 1KB, 2KB, 4KB, 8KB, 16KB, 32KB, 64KB, 128KB.
 
 \begin{table}[ht]
     \centering
@@ -57,7 +57,7 @@ y capacidad de almacenamiento en bloques de 1KB,2KB,4KB,8KB,16KB,32KB,64KB,128KB
     \centering
     \begin{tabular}{|l|l|l|}
     \hline
-    Direccion & Descripcion \\
+    Direcci\'on & Descripci\'on \\
     \hline
      0x08 & canal B\\ 
     \hline
@@ -81,12 +81,12 @@ n = interval / period\\
 delta  = 255 - n\\
 \end{gather}
 
-\subsubsection{Configuraci\'on bloque de 1K muestreo 1 micro seg}
+\subsubsection{Configuraci\'on bloque de 1KB y muestreo 1 microsegundo}
 
 \begin{algorithm}
-    \caption{Configuraci\'on 1K 1micro}\label{algo_ad_conf}
+    \caption{Configuraci\'on 1KB 1 microsegundo}\label{algo_ad_conf}
     \begin{algorithmic}[1]
-    \Procedure{Setup}{}
+    \Procedure{Setup()}{}
     \State
     \State $config \gets 0x00$
     \State $config \gets config \lor 0x02$
@@ -100,7 +100,8 @@ delta  = 255 - n\\
     \State $config \gets config \lor 0x01$
     \State $write(0x0B, config)$
     \State
-    \State $samples= 1000 / 100$
+    \State $period \gets 100$
+    \State $samples= 1000 / period$
     \State $delta = 255 - samples$
     \State $write(0x0C, delta)$
 
@@ -136,9 +137,9 @@ Para la extracci\'on de los datos es necesaria esta serie de pasos:
 \end{itemize}
 
 \begin{algorithm}
-    \caption{Extracci\'on de datos}\label{algo_ad_data}
+    \caption{Extracci\'on de datos del AD}\label{algo_ad_data}
     \begin{algorithmic}[1]
-    \Procedure{Setup}{}
+    \Procedure{GetDataFromAD()}{}
    
     \State $config \gets 0x00$
     \State $config \gets config \lor 0x02$

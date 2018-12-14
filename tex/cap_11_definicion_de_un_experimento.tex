@@ -1,20 +1,19 @@
-\section{Definicion de un experimento}
+\section{Definici\'on de un experimento}
 
-En la actualidad una numerosa cantidad de proyectos utilizan notacion JSON para representar
-objetos por muchas razones entre ellas su facilidad para ser comprendido por parte de desarrolladores
-y el soporte built-in para ser manipulado por navegadores web y nuestros lenguajes elegidos para
-desarrollar, python y javascript. Idealmente estos objetos son tambien sencillos de almacenar en 
-bases de datos no relacionales.
+Para representar la definici\'on de un experimento se eligi\'o notaci\'on JSON, 
+por el soporte built-in por parte de los lenguajes elegidos para desarrollar el sistema, 
+Python y Javascript y la implementaci\'on de servicios REST necesarios en el \textit{Servidor}
 
-Haciendo uso de aritmetica podemos deducir que la representacion de un experimento
-es liviana puesto que el numero de instrucciones de un programa \(P\) sera de \(N < 512 \) instrucciones
-lo que nos daria un peso aproximado en 50KB por experimento representado en esta notacion.
+Haciendo uso de aritm\'etica podemos deducir que la representaci\'on de un experimento en JSON
+es liviana puesto que el n\'umero de instrucciones de un programa \(P\) sera de \(N < 512 \) 
+y para un archivo de texto de 512 lineas de 80 columnas de caracteres de 1 Byte 
+tiene un peso aproximado de 327.68 Kilobytes.
 
-La validacion del esquema JSON de un experimento, sera llevada a cabo por un modulo programado
-dentro del sistema. 
+La validaci\'on del esquema JSON de un experimento, es llevada a cabo por un m\'odulo programado
+dentro del sistema para tal fin.
 
-Cabe destacar que los tipos de datos presentes en la especificacion de un experiemento son
-soportados sin perdidad de precision por parte de la notacion JSON.\cite{json_ref}
+Cabe destacar que los tipos de datos presentes en la especificaci\'on de un experiemento son
+soportados sin perdida de precisi\'on por parte de la notaci\'on JSON.
 
 \newpage
 

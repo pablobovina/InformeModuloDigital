@@ -1,13 +1,11 @@
 \section{Subm\'odulo PP2}
 
-El programador de pulsos es un microprocesador dise\~nado a medida con instrucciones que generan
-un patr\'on de salida por un tiempo determinado.
-\\\\
-Un patr\'on de salida es una combinaci\'on de 16 pulsos TTL en paralelo por un periodo 
+El programador de pulsos digitales PP2 es un microprocesador dise\~nado a medida con instrucciones que generan
+un \textit{patr\'on de salida}.
+Un \textit{patr\'on de salida} es una combinaci\'on de 16 pulsos TTL en paralelo por un periodo 
 de tiempo determinado.
-\\\\
-Un programa ejecutable por el PP2 sera una secuencia de no mas de 512 instrucciones 
-y la ejecucion derivara en una secuencia de patrones de salida de duracion determinada.
+Un programa ejecutable por el PP2 ser\'a una secuencia de no m\'as de 512 instrucciones 
+y la ejecuci\'on derivar\'a en una \textit{secuencia de patrones de salida} de duraci\'on determinada.
 
 
 \subsection{Instrucciones}
@@ -18,7 +16,7 @@ cada una es una secuencia de 64 bits con la siguiente estrucutura:\\
     \centering
     \begin{tabular}{|l|l|l|l|l|l|l|}
     \hline
-    Patr\'on de salida  & Dato & Nivel de lazo & Codigo de instrucci\'on & Demora \\
+    Patr\'on de salida  & Dato & Nivel de lazo & Codigo de instrucci\'on & Duraci\'on \\
     \hline
     16 bits & 11 bits & 2 bits & 3 bits & 32 bits\\
     \hline
@@ -29,7 +27,7 @@ cada una es una secuencia de 64 bits con la siguiente estrucutura:\\
 
 \subsubsection{Duraci\'on de una instrucci\'on}
 Cada instrucci\'on requiere de 4 pulsos de reloj ($4 * 40ns = 160ns$) 
-y la demora m\'inima es 2 pulsos ($2 * 40ns = 80ns$). Por lo tanto el pulso de
+y la duraci\'on m\'inima es 2 pulsos ($2 * 40ns = 80ns$). Por lo tanto el pulso de
 valle m\'inimo es de $160ns + 80ns = 240ns$.
 
 \subsubsection{Continue}
@@ -39,27 +37,27 @@ Mantiene una combinaci\'on de 16 pulsos de salida por un tiempo determinado.
     \item dato: no utilizado.
     \item nivel de lazo: no utilizado.
     \item c\'odigo de instruccion: 0x01.
-    \item demora: duraci\'on de la instrucci\'on.
+    \item duraci\'on: duraci\'on de la instrucci\'on.
 \end{itemize}
 
 \subsubsection{Loop}
-Marca el inicio de un bloque de repetici\'on.
+Marca el apertura de un bloque de repetici\'on.
 \begin{itemize}
     \item patr\'on de salida: es la combinaci\'on de 16 pulsos de salida.
     \item dato: contador de repeticiones.
-    \item nivel de lazo: nivel de anidamiento entre lazos
+    \item nivel de lazo: nivel de profundidad de anidamiento entre lazos.
     \item c\'odigo de instrucci\'on: 0x02.
-    \item demora: duraci\'on de la instrucci\'on.
+    \item duraci\'on: duraci\'on de la instrucci\'on.
 \end{itemize}
 
 \subsubsection{Retl}
-Marca de fin de un bloque de repetici\'on.
+Marca de cierre de un bloque de repetici\'on.
 \begin{itemize}
     \item patron de salida: es la combinaci\'on de 16 pulsos de salida.
-    \item dato: direcci\'on de la instrucci\'on Loop de inici\'o.
+    \item dato: direcci\'on de la instrucci\'on Loop de inicio.
     \item nivel de lazo: no utilizado.
     \item c\'odigo de instrucci\'on: 0x03.
-    \item demora: duraci\'on de la instrucci\'on.
+    \item duraci\'on: duraci\'on de la instrucci\'on.
 \end{itemize}
 
 \subsubsection{End}
@@ -69,7 +67,7 @@ Finaliza la secuencia de pulsos.
     \item dato: no utilizado.
     \item nivel de lazo: no utilizado.
     \item c\'odigo de instrucci\'on: 0x07.
-    \item demora: duraci\'on de la instrucci\'on.
+    \item duraci\'on: duraci\'on de la instrucci\'on.
 \end{itemize}
 
 \subsection{Registros del PP2}
@@ -80,23 +78,23 @@ El PP2 cuenta con los siguientes registros de 8 bits:
     \centering
     \begin{tabular}{|l|l|l|l|}
     \hline
-    Direccion  & Descripcion & modo  \\
+    Direcci\'on  & Descripci\'on & modo  \\
     \hline
     0x50 & comando & escritura\\
     \hline
     0x51 & carga   & escritura\\
     \hline
-    0x52 & señal   & escritura \\
+    0x52 & se\~nal   & escritura \\
     \hline
 \end{tabular}
 \caption{\label{tab:pp2_reg}Estructura de las instrucciones.}
 \end{table}
 \newpage
-\subsubsection{Carga de una instruccion en el PP2.}
+\subsubsection{Carga de un programa en el PP2.}
 \begin{algorithm}
-    \caption{Carga de una instruccion en el PP2}\label{algo_pp2_load}
+    \caption{Carga de una programa en el PP2}\label{algo_pp2_load}
     \begin{algorithmic}[1]
-    \Procedure{UploadProgram}{}
+    \Procedure{UploadProgram()}{}
     \State // {Reset}
     \State $write(0x50, 0x02)$
     \State // {Modo carga}
@@ -125,14 +123,14 @@ El PP2 cuenta con los siguientes registros de 8 bits:
     \end{algorithmic}
     \end{algorithm}
 
-\subsubsection{Ejecutar un programa.}
+\subsubsection{Ejecuci\'on un programa.}
 \begin{algorithm}
     \caption{Ejecutar un programa.}\label{algo_pp2_exe}
     \begin{algorithmic}[1]
-    \Procedure{Setup}{}
+    \Procedure{ExcuteProgram()}{}
     \State // {Modo microprocesador}
     \State $write(0x50, 0x00)$
-    \State // {Señal de ejecucion}
+    \State // {Señal de ejecuci\'on}
     \State $write(0x08)$
     \EndProcedure
     \end{algorithmic}

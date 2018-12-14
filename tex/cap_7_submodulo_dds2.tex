@@ -1,11 +1,9 @@
 \section{Subm\'odulo DDS2}
 
-El DDS2 es un generador de se\~nales con un rango de frecuencia de 0 a 120 Mhz.
-
+El subm\'odulo DDS2 es un generador de se\~nales digitales con un rango de frecuencia de 0 a 80 Mhz.
 El usuario puede almacenar hasta 2 frecuencias y un total de 16 fases para 
-combinarlos en la ejecuci\'on de un programa.
-
-Tambien hay una relaci\'on entre el PP2 y el DDS2, puesto que este tiene como entrada
+combinarlos en un experimento.
+Existe una relaci\'on entre el PP2 y el DDS2, puesto que este tiene como entrada
 los pulsos 8,9,10,11,12,13,14 para su manipulaci\'on externa por aquel durante
 la ejecuci\'on de un programa.
 
@@ -97,14 +95,11 @@ la ejecuci\'on de un programa.
 
 \subsection{Fases}
 
-El DDS2 tiene disponible 32 posiciones de 8 bits para el almacenamiento de fases
-y cuenta con un bus de 8 bits.
-
-El MSB de una fase debe almacenarse siempre en una direcci\'on par de la RAM, luego
-el LSB de la misma en el valor impar siguiente contiguo.
-
-La fase es un valor de 14 bits, por lo que los 2 bits restantes del MSB son descartados.
-
+El DDS2 tiene disponible 32 posiciones de memoria 8 bits para el almacenamiento de fases
+con un bus de datos de 8 bits.
+La fase es un valor de 14 bits, los 2 bits restantes del MSB son descartados.
+El MSB de una fase debe almacenarse siempre en una direcci\'on par de la memoria, luego
+el LSB de la misma en el valor impar contiguo siguiente.
 Antes de almacenar el valor entero de la fase F debemos convertirlo a su equivalente
 en unidades de 45 de la siguiente manera:
 \begin{gather}
@@ -131,7 +126,7 @@ en unidades de 45 de la siguiente manera:
 
 \subsubsection{Algoritmo base de almacenamiento de fases}
 \begin{algorithm}[H]
-    \caption{almacenamiento de una fase en direccion 0x00}\label{algo_phases}
+    \caption{Almacenamiento de una fase en direccion 0x00}\label{algo_phases}
     \begin{algorithmic}[1]
     \Procedure{SavePhase}{F}
     \State // {MSB y LSB de valor de fase}
@@ -162,10 +157,9 @@ El tiempo entre el pulso 9 y 10 debe ser menor a 100 nanosegundos.
 
 \subsection{Frecuencias}
 
-El DDS2 tiene disponible 12 registros internos de frecuencia, cada frecuencia ocupa 6 registros, 
+El DDS2 tiene disponible 12 registros internos de frecuencia de 8 bits, cada frecuencia ocupa 6 registros, 
 por lo tanto se pueden almacenar 2 frecuencias.
-
-Las frecuencias disponibles van de 0 a 120 Mhz y el valor que se almacena en los registros
+Las frecuencias disponibles van de 0 a 80 Mhz y el valor que se almacena en los registros
 en representaci\'on se obtiene con la siguiente c\'alculo:
 \noindent
 \begin{gather}
@@ -190,7 +184,7 @@ en representaci\'on se obtiene con la siguiente c\'alculo:
 
 \subsubsection{Algoritmo base de almacenamiento de frecuencias}
 \begin{algorithm}[H]
-    \caption{almacenamiento de una frecuecia de trabajo 1.}\label{algo_frec}
+    \caption{Almacenamiento de una frecuecia de trabajo 1.}\label{algo_frec}
     \begin{algorithmic}[1]
     \Procedure{SaveFrequency}{F}
     \State // {Conversi\'on de la frecuencia deseada al valor}
@@ -223,7 +217,7 @@ en representaci\'on se obtiene con la siguiente c\'alculo:
     \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{direccionamiento de frecuencias}
+\subsubsection{Direccionamiento de frecuencias}
 Se admiten hasta 2 frecuencias de trabajo, se seleccionan con el pulso 8.
 
 \newpage
