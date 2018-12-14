@@ -1,30 +1,29 @@
-\section{Algoritmo de traduccion de experimentos}
+\section{Algoritmo de traducci\'on de experimentos}
 
-Como mencionamos en la seccion 9 un programa almacenable y ejecutable por el PP2 es una secuencia de 
+Un programa almacenable y ejecutable en el PP2 es una secuencia de 
 instrucciones \(I_{1} ... I_{N}\) con \(1 < N < 512 \).
 \\
-Las instrucciones disponibles son:
+Donde las instrucciones disponibles son:
 
 \begin{itemize}
-    \item Continue
-    \item Loop
-    \item Retl
-    \item End
+    \item $Continue$
+    \item $Loop$
+    \item $Retl$
+    \item $End$
 \end{itemize}
 
 \noindent
-No todos los programas escritos con estas instrucciones son admitidos como validos para el PP2, 
-por esto tenemos las siguientes reglas:
+No todos los programas escritos con estas instrucciones son admitidos 
+como v\'alidos para el PP2, por esto tenemos las siguientes reglas:
 
 \begin{itemize}
-\item Regla 1: la instruccion End siempre es la ultima instruccion.
-\item Regla 2: la intruccion End aparece solo una vez.
-\item Regla 3: la intruccion End siempre esta presente.
-\item Regla 4: un bucle siempre inicia con instruccion Loop y finaliza con Retl.
-\item Regla 5: puede haber hasta 3 loops dentro de un loop.
+\item Regla 1: la instrucci\'on $End$ siempre es la \'ultima.
+\item Regla 2: la intrucci\'on $End$ aparece solo una vez.
+\item Regla 3: la intrucci\'on $End$ siempre esta presente.
+\item Regla 4: un bucle siempre inicia con instrucci\'on $Loop$ y finaliza con $Retl$.
+\item Regla 5: puede haber hasta 3 instrucciones $Loop$ anidados en un $Loop$.
 \item Regla 6: la longitud del programa no puede ser mayor a 512 instrucciones.
 \end{itemize}
-
 
 \begin{figure}[!htb].
     \includegraphics[width=\linewidth]{../figures/d12.jpg}
@@ -34,7 +33,7 @@ por esto tenemos las siguientes reglas:
  
 \newpage
 \begin{algorithm}
-    \caption{Algoritmo de traduccion base}\label{euclid}
+    \caption{Algoritmo de traducci\'on base}\label{euclid}
     \begin{algorithmic}[1]
     \Procedure{Translate}{P, L=0, S=[]}
     \State $ins \gets pop(P)$

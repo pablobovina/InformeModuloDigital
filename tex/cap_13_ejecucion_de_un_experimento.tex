@@ -1,31 +1,29 @@
-\section{Ejecucion de un experimento}
+\section{Ejecuci\'on de un experimento}
 
-Un modo de capturar fallos inesperados es simular la ejecucion de un experimento,
-evitando la interaccion con el modulo digital via usb.
-
-En modo simulado el experimento se ejecuta en un entorno limitado con el objetivo de detectar 
-tres situaciones no deseadas:
-
-\begin{itemize}
-\item una exepcion de software no capturada.
-\item parametros fuera de rango para alguno de los submodulos.
-\item un error en la traduccion del experimento a un programa ejecutable en el PP2.
-\end{itemize}
-
-Este experimento simulado no se ejecuta en un hilo separado puesto que la demora es baja.
-
-De manera alternativa el modo simulado puede verse tambien como un test de integracion
-entre las unidades de software desarrolladas.
-
-Si el experimento simulado tiene exito entonces se procede con la ejecucion efectiva del experimento
-el cual debemos tener algunos detalles en cuenta:
+Un modo de capturar fallos es simular la ejecuci\'on de un experimento,
+evitando la interacci\'on via usb, con el m\'odulo digital.
+En modo simulado el experimento se ejecuta en un entorno limitado con el objetivo de
+detectar tres situaciones no deseadas:
 
 \begin{itemize}
-    \item puede durar horas.
-    \item puede ser cancelado en cualquier momento.
-    \item debe estar sincronizado con la base de datos.
+\item Una exepci\'on de software no capturada.
+\item Par\'ametros fuera de rango para alguno de los subm\'odulos.
+\item Un error en la traducci\'on del experimento a un programa ejecutable en el PP2.
 \end{itemize}
 
-El siguiente diagrama clases muestra el diseño de un experimento simulado y un experimento.
+Un experimento simulado se ejecuta el hilo principal, puesto que 
+la demora es baja. De manera alternativa el modo simulado puede verse tambi\'en como un 
+test de integraci\'on entre las unidades de software desarrolladas.
+Si el experimento simulado tiene \'exito entonces se procede con la ejecuci\'on efectiva
+del experimento que se desprende del hilo princial y en el cual debemos tener 
+algunos detalles en cuenta:
+
+\begin{itemize}
+    \item Puede durar horas.
+    \item Puede ser interrumpido por el usuario en cualquier momento.
+    \item Debe estar sincronizado con la base de datos.
+\end{itemize}
+
+El siguiente diagrama muestra el flujo de ejecuci\'on de un experimento simulado y no simulado.
 
 \newpage
