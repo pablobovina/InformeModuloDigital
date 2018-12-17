@@ -1,64 +1,63 @@
-\section{Planificacion del desarrollo}
+\section{Planificaci\'on del desarrollo}
 
 
-De acuerdo con los requerimientos descriptos en el capitulo XX se propone implementar el sistema
-con:
+De acuerdo con los requerimientos descriptos se propone implementar el sistema con:
 
 \begin{itemize}
-    \item Django framework \item Pythton 2.7
-    \item React js \item Javascript ECM6
-    \item Git
+    \item Framework backend: Django 1.11
+    \item Lenguaje backend: Pythton 2.7
+    \item Frameworks frontend: ReactJs 16.0.0 / NodeJs 8.11.3 / NPM 5.6.0
+    \item Lenguaje frontend: Javascript ECM6.
+    \item Control de version: Git (GitHub).
 \end{itemize}
-Las tecnologias elegidas son ampliamente soportadas por la comunidad de desarrolladores, de codiglo libre y soporte multiplataforma en PC.
-
-Con el objetivo de asegurar que lo primero que se desarrolle cumpla son los requeriminetos asociados 
-con el control del Modulo Digital, luego proveer una manipulacion remota y finalmente una interfaz de
-usuario para el manejo a traves del navegador web, se organizo el desarrollo de la siguiente manera:
+Las tecnolog\'ias elegidas son ampliamente soportadas por la comunidad de desarrolladores, de c\'odigo abierto y soporte en PC. Con el objetivo de asegurar que lo primero que se implemente sea en relaci\'on a los requerimientos 
+de control del M\'odulo Digital, luego proveer una manipulaci\'on remota del mismo y finalmente una interfaz de
+usuario para la gesti\'on de los experimentos, se organiz\'o el desarrollo en el siguiente orden:
 \begin{itemize}
-    \item Modulo Digital
-    \item Servidor 
-    \item Interfaz Grafica Web
+    \item 1) Modulo Digital.
+    \item 2) Servidor.
+    \item 3) Interfaz Grafica Web.
 \end{itemize}
-El mapeo entre los requerimentos y el orden propuesto genera el siguiente esquema de tareas a realizar.
+El mapeo entre los requerimientos y el orden propuesto genera el siguiente esquema de tareas a realizar.
 \begin{itemize}
     
-    \item Modulo Digital
+    \item M\'odulo Digital
     \begin{itemize}
-        \item Configuracion del proyecto y entornos
-        \item Implementacion control AD 
-        \item Implementacion control DDS2
-        \item Implementacion control PP2
-        \item Implementacion abstraccion Experimento
-        \item Implementacion de interfaz USB
-        \item Implementacion de un programa principal
-        \item Gestion de logs
-        \item Integracion con Servidor
+        \item Configuraci\'on del proyecto y entornos.
+        \item Implementaci\'on control AD. 
+        \item Implementaci\'on control DDS2.
+        \item Implementaci\'on control PP2.
+        \item Implementaci\'on abstracci\'on $Experimento$.
+        \item Implementaci\'on de interfaz USB.
+        \item Implementaci\'on de un programa principal.
+        \item Gesti\'on de logs.
+        \item Integraci\'on con $Servidor$.
     \end{itemize}
 
     \item Servidor
         \begin{itemize}
-        \item Configuracion del proyecto y entornos
-        \item Servicios REST para la edicion de experimentos
-        \item Servicios REST para control de ejecucion de experimentos
-        \item Servicios REST para la generacion de reportes
-        \item Modelado de Base de datos 
-        \item Configuracion de sesiones
-        \item Configuracion de acceso a los servicios REST
-        \item Gestion de logs
-        \item Integracion con Interfaz WEB
-        \item Integracion con Modulo Digital
+        \item Configuraci\'on del proyecto y entornos.
+        \item Servicios REST para la edici\'on de experimentos.
+        \item Servicios REST para control de ejecuci\'on de experimentos.
+        \item Servicios REST para la generaci\'on de reportes.
+        \item Modelado de base de datos. 
+        \item Configuraci\'on de sesiones.
+        \item Configuraci\'on de acceso a los servicios REST.
+        \item Gesti\'on de logs.
+        \item Integraci\'on con Interfaz WEB.
+        \item Integraci\'on con M\'odulo Digital.
         \end{itemize}
     \item Interfaz WEB
         \begin{itemize}
-        \item Configuracion de proyecto y entornos
-        \item Implementacion de transiciones
-        \item Componente de edicion de experimentos
-        \item Componente de control de ejecucion de experimentos
-        \item Componente de login
-        \item Componente de visualizacion de errores
-        \item Componente de definicion de experimento
-        \item Implementacion de control de estados
-        \item Integracion con Servidor
+        \item Configuraci\'on de proyecto y entornos.
+        \item Implementaci\'on de transiciones.
+        \item Componente de edici\'on de experimentos.
+        \item Componente de control de ejecuci\'on de experimentos.
+        \item Componente de login/logout.
+        \item Componente de visualizaci\'on de errores.
+        \item Componente de definici\'on de experimento.
+        \item Implementaci\'on de control de estados.
+        \item Integraci\'on con Servidor.
         \end{itemize}
     \end{itemize}
 \newpage

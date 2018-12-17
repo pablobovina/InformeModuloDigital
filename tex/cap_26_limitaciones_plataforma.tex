@@ -1,30 +1,28 @@
-\section{Limitaciones de la platforma}
+\section{Limitaciones del sistema}
 
 Existen limitaciones de diversos tipos:
 
 \begin{itemize}
     \item Plataforma
     \begin{itemize}
-    \item driver y dll para windows posiblemente reemplazable usando libusb
-    \item administracion de archivos limitada
-    \item soporte librerias de matematica y graficos limitada
+    \item Driver y DLL USB disponible para windows \'unicamente.
+    \item Administraci\'on de filesystem restrictiva. 
+    \item Soporte librer\'ias de matem\'atica y gr\'aficos limitada.
+    \item Celery y RabbitMQ no son soportados completamente.
     \end{itemize}
-    \item Modulo Digital
+    \item M\'odulo Digital
     \begin{itemize}
-        \item requiere la implementacion de un manager para su utilizacion
-        \item requiere permisos para creacion de archivos de logs y reportes
+        \item Requiere la implementaci\'on de un manager para su utilizaci\'on
     \end{itemize}
     \item Server
     \begin{itemize}
-        \item gestion del proceso del servidor es manual
-        \item la gestion de usuarios es manual via interfaz Django
-        \item seguimientos de recursos de sistema es manual
+        \item Gesti\'on del proceso del servidor requiere un sysadmin siempre.
+        \item Gesti\'on de usuarios es manual via interfaz Django, no autoadministrable.
+        \item Seguimiento de recursos de sistema es manual, no hay pol\'itica de balance de carga.
     \end{itemize}
-    \item Interfaz Grafica
-    \begin{itemize}
-        \item programacion orientada a componentes
-        \item JSX una variacion de JavaScript
-        \item JQuery no es soportado
+    \item Interfaz Gr\'afica
+    \begin{itemize} 
+        \item JQuery no es soportado seg\'un directrices de ReactJs.
     \end{itemize}
 \end{itemize}
 \newpage

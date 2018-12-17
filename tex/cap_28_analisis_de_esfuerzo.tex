@@ -1,39 +1,126 @@
-\section{Analisis de esfuerzo}
+\section{M\'etricas de desarrollo}
 
+Se presentan algunas m\'etricas tales como total de lineas de c\'odigo y commits de los proyectos
+obtenidos con los comandos:
+\begin{lstlisting}[language=bash]
+    $ git ls-files | xargs wc -l y $ git log --oneline | wc -l
+\end{lstlisting}
+respectivamente.
+  
 \begin{itemize}
-\item Niveles:
-    \begin{itemize}
-    \item Muy Alto
-    \item Alto
-    \item Medio
-    \item Bajo
-    \item Trivial
-    \end{itemize}
+\item Módulo Digital (57 Commits)
+\begin{lstlisting}[language=bash]
+        2 .gitignore
+        674 LICENSE
+        133 Microchip/mpusbapi.dll
+         84 Microchip/mpusbapi.h
+          0 __init__.py
+         50 dry_run.py
+         55 main.py
+         49 main_logger.py
+        131 source/Usb.py
+          0 source/__init__.py
+        193 source/ad.py
+        228 source/dds2.py
+         27 source/experiment2.py
+         17 source/experiment_config.py
+         53 source/experiment_data.py
+         47 source/experiment_reporter.py
+         23 source/experiment_runner.py
+        271 source/experiment_scanner.py
+        125 source/experiment_secuence.py
+        108 source/pp2.py
+         59 source/secuence.py
+          7 source/setup.py
+        263 tests.py
+       2599 total
+    \end{lstlisting}
 
-\item Modulo Digital
-    \begin{itemize}
-        \item Usb: Alto
-        \item PP2: Alto
-        \item AD: Alto
-        \item DDS2: Muy Alto
-        \item Reporte: Bajo
-        \item Hilo: Alto
-    \end{itemize}
-
-\item Server:
-    \begin{itemize}
-    \item Servicios: Alto
-    \item Login: Alto
-    \item Integracion: Muy Alto
-    \item Modelado: Medio
-    \item Manager Hilos: Alto
-    \end{itemize}
+\item Interfaz Gr\'afica (27 Commits)
+\begin{lstlisting}[language=bash]
+        24 .gitignore
+        2164 README.md
+          24 package.json
+          12 public/favicon.ico
+          45 public/index.html
+          15 public/manifest.json
+          35 src/crear_experimento/action_panel/index.js
+          34 src/crear_experimento/experiment_admin/index.js
+          43 src/crear_experimento/experiment_view/index.css
+          33 src/crear_experimento/experiment_view/index.js
+         142 src/crear_experimento/experiment_view/modal_generic.js
+          82 src/crear_experimento/general_settings/index.js
+         146 src/crear_experimento/index.js
+          39 src/editar_experimento/action_panel/index.js
+          33 src/editar_experimento/experiment_admin/index.js
+          43 src/editar_experimento/experiment_view/index.css
+          34 src/editar_experimento/experiment_view/index.js
+         142 src/editar_experimento/experiment_view/modal_generic.js
+          82 src/editar_experimento/general_settings/index.js
+         194 src/editar_experimento/index.js
+           5 src/index.css
+         160 src/index.js
+          48 src/intermediate_server/data.js
+         150 src/lista_de_experimentos/action_panel/index.js
+          44 src/lista_de_experimentos/action_panel/view.js
+          42 src/lista_de_experimentos/index.js
+          82 src/lista_de_experimentos/table_experiments/index.js
+           7 src/logo.svg
+          23 src/monitor_de_estado/index.js
+           4 src/notification_area/notification.css
+          27 src/notification_area/notification.js
+          13 src/panel_general/index.css
+         107 src/panel_general/index.js
+           7 src/panel_general/logo.svg
+          10 src/procesamiento_de_datos/index.js
+         108 src/registerServiceWorker.js
+         139 src/resultado_de_experimentos/action_panel/index.js
+          44 src/resultado_de_experimentos/action_panel/view.js
+          42 src/resultado_de_experimentos/index.js
+          82 src/resultado_de_experimentos/table_experiments/index.js
+          64 src/sesion_de_inicio/index.js
+          39 src/ver_experimento/action_panel/index.js
+          33 src/ver_experimento/experiment_admin/index.js
+          43 src/ver_experimento/experiment_view/index.css
+          34 src/ver_experimento/experiment_view/index.js
+         140 src/ver_experimento/experiment_view/modal_generic.js
+          82 src/ver_experimento/general_settings/index.js
+         193 src/ver_experimento/index.js
+          39 src/ver_resultado/action_panel/index.js
+          33 src/ver_resultado/experiment_admin/index.js
+          43 src/ver_resultado/experiment_view/index.css
+          34 src/ver_resultado/experiment_view/index.js
+         140 src/ver_resultado/experiment_view/modal_generic.js
+          82 src/ver_resultado/general_settings/index.js
+         193 src/ver_resultado/index.js
+          74 src/vista_parcial/index.js
+        5776 total
+    \end{lstlisting}
     
-\item Interfaz Grafica:
-    \begin{itemize}
-        \item Vistas: Alto
-        \item Integracion: Alto
-        \item Alertas: Alto
-    \end{itemize}
+\item Servidor (33 commits):
+    \begin{lstlisting}[language=bash]
+       0 experiments/__init__.py
+       6 experiments/admin.py
+       8 experiments/apps.py
+      49 experiments/experiment.py
+      45 experiments/manager_thread.py
+       0 experiments/migrations/__init__.py
+      34 experiments/models.py
+     195 experiments/result.py
+     102 experiments/result_manager_thread.py
+       6 experiments/tests.py
+      13 experiments/urls.py
+     139 experiments/views.py
+       0 login/__init__.py
+       6 login/admin.py
+       8 login/apps.py
+       0 login/migrations/__init__.py
+       6 login/models.py
+       6 login/tests.py
+       8 login/urls.py
+      28 login/views.py
+      22 manage.py
+     853 total
+    \end{lstlisting}
 \end{itemize}
 \newpage

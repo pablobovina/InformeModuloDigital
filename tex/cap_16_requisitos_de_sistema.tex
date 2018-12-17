@@ -1,86 +1,87 @@
 \section{Requisitos del sistema}
 
-Podemos ver los requerimientos en generales
+Estos son los requerimientos generales del sistema a desarrollar:
 
 \begin{itemize}
-\item permitir a mas de un usuario utilizar el sistema
-\item permitir a usuarios la gestion de experimentos
-\item modelar un experimento y su ejecucion
-\item proveer acceso remoto al sistema
+\item Permitir a m\'as de un usuario utilizar el sistema.
+\item Permitir a usuarios la gesti\'on de experimentos.
+\item Modelar un experimento y su ejecuci\'on.
+\item Proveer acceso remoto al sistema.
 \end{itemize}
-De estos requerimientos se desprenden los siguientes especificos:
+\noindent
+De estos requerimientos generales se desprenden los siguientes espec\'ificos:
 
 \begin{itemize}
-\item el usuario tiene una sesion asignada al ingreso del sistema y revocada a la salida del mismo.
-\item varios usuarios pueden acceder al sistema al mismo tiempo
+\item El usuario tiene una sesi\'on asignada al ingreso del sistema y revocada a la salida del mismo.
+\item Varios usuarios pueden acceder al sistema al mismo tiempo.
 \end{itemize}
 
 \begin{itemize}
-\item el usuario puede ver si hay un experimento en ejecucion y el detalle del mismo
-\item el usuario tiene un espacio de trabajo donde puede crear/ver/actualizar/eliminar sus experimentos
-\item el usuario puede cancelar el experimento en ejecucion
-\item el usuario puede solicitar un reporte parcial de un experimento en ejecucion
-\item el usuario puede solicitar el reporte final de un experimento finalizada la ejecucion
-\item el usuario puede verificar el estado de un experimento:
-\item el usuario es notificado antes de la ejecucion de un experimento cuando:
+\item El usuario puede ver si hay un experimento en ejecuci\'on y el detalle del mismo.
+\item El usuario tiene un espacio de trabajo donde puede crear/ver/actualizar/eliminar sus experimentos.
+\item El usuario puede cancelar el experimento en ejecuci\'on.
+\item El usuario puede solicitar un reporte parcial de un experimento en ejecuci\'on.
+\item El usuario puede solicitar el reporte final de un experimento finalizada la ejecuci\'on.
+\item El usuario puede verificar el estado de un experimento.
+\item El usuario es notificado antes de la ejecuci\'on de un experimento en las siguientes situaciones:
     \begin{itemize}
-    \item salida voluntaria por error:
+    \item Salida voluntaria por error:
         \begin{itemize}
-        \item no es una secuencia ejecutable por el PP2
-        \item ya existe algun experimento ejecutandose
-        \item algun parametro de configuracion es invalido en algun submodulo PP2, DDS2, AD, USB
-        \item fallo en conexion via USB
+        \item No es una secuencia ejecutable por el PP2.
+        \item Ya existe algun experimento ejecutandose.
+        \item Algun par\'ametro de configuraci\'on es in\'valido en algun submodulo PP2, DDS2, AD, USB.
+        \item Fall\'o en conexi\'on via USB.
         \end{itemize}
     \end{itemize}    
     \begin{itemize}    
-    \item salida involuntaria por error:
+    \item Salida involuntaria por error:
         \begin{itemize}
-        \item hubo alguna excepcion de sistema no controlada
-        \item no se pudo establecer conexion con el servidor
-        \item un experimento finalizado no actualizo su estado impidiendo la ejecucion de solcitido
+        \item Hubo alguna excepci\'on de sistema no controlada.
+        \item No se pudo establecer conexi\'on con el servidor.
+        \item Un experimento finalizado no actualiz\'o su estado impidiendo la ejecuci\'on de otro.
         \end{itemize}
     \end{itemize}
 \end{itemize}
 \begin{itemize}
-\item un experimento tiene una secuencia definidida con sus parametros
-\item un experimento tiene una marca de tiempo de creacion/actualizacion
-\item un experimento eliminado no es recuperable
-\item un experimento tiene un autor que es el usuario que lo creo
-\item un experimento tiene estado created cuando esta almacenado en base de datos
-\item un experimento es solo visible para el usuario que lo creo
-\item un experimento tiene un titulo
-\item un experimento tiene una descripcion
-\item un experimento no tiene un historial de edicion asociado
+\item Un experimento tiene una secuencia definidida con sus par\'ametros.
+\item Un experimento tiene una marca de tiempo de creaci\'on/actualizaci\'on.
+\item Un experimento eliminado no es recuperable.
+\item Un experimento tiene un autor que es el usuario que lo creo.
+\item Un experimento tiene estado $Created$ cuando esta almacenado en base de datos.
+\item Un experimento es solo visible para el usuario que lo creo.
+\item Un experimento tiene un t\'itulo.
+\item Un experimento tiene una descripci\'on.
+\item Un experimento no tiene un historial de edici\'on asociado.
 \end{itemize}
 
 \begin{itemize}
-\item un resultado es el producto de la ejecucion de un experimento
-\item un resultado es parcial cuando la ejecucion del experimento asociado no finalizo
-\item un resultado es final cuando la ejecucion del experimento asociado finalizo
-\item un resultado tiene un unico experimento asociado
+\item Un resultado es el producto de la ejecuci\'on de un experimento.
+\item Un resultado es parcial cuando la ejecuci\'on del experimento asociado no finaliz\'o.
+\item Un resultado es final cuando la ejecuci\'on del experimento asociado finaliz\'o.
+\item Un resultado tiene un \'unico experimento asociado.
 \end{itemize}
 
 \begin{itemize}
-\item un reporte parcial es el grupo de datos de un resultado parcial
-\item un reporte final es el grupo de un resultado final
-\item un reporte contiene:
+\item Un reporte parcial es el grupo de datos de un resultado parcial.
+\item Un reporte final es el grupo de un resultado final.
+\item Un reporte contiene:
     \begin{itemize}
-    \item log de la ejecucion
-    \item datos del AD en formato CSV
-    \item experimento ejecutado
+    \item Log de la ejecuci\'on.
+    \item Datos del AD en formato CSV.
+    \item Experimento ejecutado.
     \end{itemize}
 \end{itemize}
 \begin{itemize}
-\item el sitema tiene servicios REST para:
+\item El sistema tiene servicios REST para:
     \begin{itemize}
-    \item crear/ver/editar/eliminar experimentos
-    \item iniciar/cancelar ejecucion de un experimento
-    \item cancelar la ejecucion de todos los experimentos
-    \item descargar reportes parciales y finales
-    \item proveer autenticacion a todos los servicios
+    \item Crear/Ver/Editar/Eliminar experimentos.
+    \item Iniciar/Cancelar ejecuci\'on de un experimento.
+    \item Cancelar la ejecuci\'on de todos los experimentos.
+    \item Descargar reportes parciales y finales.
+    \item Proveer autenticaci\'on a todos los servicios.
     \end{itemize}
 \end{itemize}
 \begin{itemize}
-\item el sistema tiene una interfaz de usuario web
+\item El sistema tiene una interfaz de usuario web.
 \end{itemize}
 \newpage

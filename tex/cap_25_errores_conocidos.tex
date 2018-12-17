@@ -1,14 +1,18 @@
 \section{Errores conocidos}
 
+Estos son los errores conocidos resultado de la ejecuci\'on de los casos de pruebas dise\~nados.
+
+
 \begin{itemize}
-    \item si el sistema es interrumpido por un apagado imprevisto durante una ejecucion 
-        es posible que un estado sea inconcistente
+    \item si el sistema es interrumpido por un apagado imprevisto durante una ejecuci\'on 
+    es posible que un estado de la base de datos sea inconcistente. 
+    Esto se debe a que no esta implementado un comportamiento para tal situaci\'on.
+    
+    \item las alertas deben ser cerradas para obtener nuevas si las hubiese. El apilado
+    de alertas no esta contemplado, puesto que pueden provenir de diferentes acciones
+    de usuarios y no hay una pol\'itica de requerimiento definida en estos casos.
 
-    \item en vista edicion hacer click en boton "guardar y ejecutar" demora 5 segundos la transicion a 
-        vista de resultados
+    \item si el sistema experimentase una interrupci\'on no hay un mecanismo definido 
+    para apagar el \textit{M\'odulo Digital} y es requerida la acci\'on humana.
 
-    \item las alertas deben ser cerradas para obtener nuevas si las hubiese
-
-    \item soporte parcial a diferentes tamaños de pantalla
 \end{itemize}
-\newpage
