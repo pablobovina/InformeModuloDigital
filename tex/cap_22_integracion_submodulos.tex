@@ -4,7 +4,8 @@ La integraci\'on de los m\'odulos del sistema se implementa a diferentes niveles
 
 \subsection{Repositorio}
 
-Un subm\'odulo git es un repositorio dentro de otro que lo incluye, con su propio historial de cambios. Cuando hay un cambio en un subm\'odulo el contenedor lo contemplar\'a siempre y cuando lo agregue al historial de este.
+Un subm\'odulo git es un repositorio dentro de otro que lo incluye, con su propio historial de cambios. Cuando hay un cambio en un subm\'odulo el contenedor lo contemplar\'a siempre y cuando lo agregue al historial de este
+\cite{git_submodules}.
 El repositorio afectado por esta metodolog\'ia es el del \textit{Servidor} incluyento al \textit{M\'odulo Digital} y a la \textit{Interfaz Gr\'afica}.
 \\
 \\
@@ -27,6 +28,6 @@ El \'arbol de directorios del repositorio queda as\'i:
 \subsection{Codigo}
 El \textit{Servidor} provee el middleware \textit{ManagerThread} para poder interactuar con el \textit{M\'odulo Digital} 
 y con el modelo de la base de datos correspondiente seg\'un el estado de la ejecuci\'on del experimento en curso.
-Para integrar el \textit{Servidor} con la \textit{Interfaz Gr\'afica} el soporte es built-in via configuraci\'on \textit{Django} el cual provee autenticaci\'on de los servicios siempre y cuando este presente el CSRF-Token en el archivo principal de la \textit{Interfax Gr\'afica} junto con la cookie de sesi\'on correspondiente en cada petici\'on HTTP.
+Para integrar el \textit{Servidor} con la \textit{Interfaz Gr\'afica} el soporte es built-in via configuraci\'on \textit{Django} el cual provee autenticaci\'on de los servicios siempre y cuando este presente el CSRF-Token en el archivo principal de la \textit{Interfax Gr\'afica}\cite{django_csrf} junto con la cookie de sesi\'on correspondiente en cada petici\'on HTTP\cite{django_cookie}.
 \newpage
 

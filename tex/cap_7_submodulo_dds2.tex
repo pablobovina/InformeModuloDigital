@@ -31,7 +31,7 @@ la ejecuci\'on de un programa.
     \centering
     \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
     \hline
-    Direccion  &B7 & B6 & B5 & B4& B3 & B2& B1 & B0 &Hex\\
+    Direcci\'on  &B7 & B6 & B5 & B4& B3 & B2& B1 & B0 &Hex\\
     \hline
     1D  &0 & 0 & 0 & 1& 0 & 0& 0 & 0 &0x10\\
     \hline
@@ -126,7 +126,7 @@ en unidades de 45 de la siguiente manera:
 
 \subsubsection{Algoritmo base de almacenamiento de fases}
 \begin{algorithm}[H]
-    \caption{Almacenamiento de una fase en direccion 0x00}\label{algo_phases}
+    \caption{Almacenamiento de una fase en direcci\'on 0x00}\label{algo_phases}
     \begin{algorithmic}[1]
     \Procedure{SavePhase}{F}
     \State // {MSB y LSB de valor de fase}
@@ -149,7 +149,7 @@ en unidades de 45 de la siguiente manera:
     \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{direccionamiento de fases}
+\subsubsection{Direccionamiento de fases}
 Los 16 valores de fase son direccionados con 4 pulsos correspondientes a los 
 pulsos 11,12,13,14. Con el pulso 9 se activa la carga de fases y con el pulso 10
 se transfiere la fase direccionada al registro de trabajo.

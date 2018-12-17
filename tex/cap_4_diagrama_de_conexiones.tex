@@ -11,17 +11,24 @@ parte de una experiencia planificada.
   
 %Figure \ref{fig:boat1} shows a boat.
 
-\subsection{Mixer}
+\subsection{Mezclador}
 
-Los pulsos de salida y la se\~nal de radiofrecuencia son las entradas del mezclador
+Los pulsos TTL de salida y la se\~nal de radiofrecuencia son las entradas del mezclador
 donde se convierten en una sola cuando el pulso TTL esta activo en 5 voltios.
 Esto permite crear pulsos de estimulaci\'on y relajaci\'on con presici\'on.
 
 \subsection{Amplificador}
-
+La se\~nal de RF proveniente del \textit{Mezclador} se amplifican tras los efectos de este que debilitan la se\~nal.
+La configuraci\'on del mismo var\'ia seg\'un el experimento a realizar.
 
 \subsection{Resonador}
+Entre sus partes mas relevantes este cuenta con una denominada "malla de acople" la cual
+tiene como objetivo dejar pasar la se\~nal RF al contenedor de la muestra e impedir
+que continuen a la etapa de adquisici\'on.
+La se\~nal de salida de la resonancia es pre-amplificada antes de retornar al \textit{M\'odulo Digital}
 
-
+\subsection{Configuraci\'on alternativa}
+En algunos casos es posible utilizar el \textit{M\'odulo Digital} como generador de pulsos TTL con una fuente
+generadora de se\~nal RF externa. Esto no es habitual pero es posible de realizar.
 
 \newpage
