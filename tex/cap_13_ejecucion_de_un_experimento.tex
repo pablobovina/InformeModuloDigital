@@ -1,12 +1,12 @@
 \section{Ejecuci\'on de un experimento}
 
 Un modo de capturar fallos es simular la ejecuci\'on de un experimento,
-evitando la interacci\'on via usb, con el m\'odulo digital.
+evitando la interacci\'on v\'ia usb, con el m\'odulo digital.
 En modo simulado el experimento se ejecuta en un entorno limitado con el objetivo de
 detectar tres situaciones no deseadas:
 
 \begin{itemize}
-\item Una exepci\'on de software no capturada.
+\item Una excepci\'on de software no capturada.
 \item Par\'ametros fuera de rango para alguno de los subm\'odulos.
 \item Un error en la traducci\'on del experimento a un programa ejecutable en el PP2.
 \end{itemize}
@@ -15,7 +15,7 @@ Un experimento simulado se ejecuta el hilo principal, puesto que
 la demora es baja. De manera alternativa el modo simulado puede verse tambi\'en como un 
 test de integraci\'on entre las unidades de software desarrolladas.
 Si el experimento simulado tiene \'exito entonces se procede con la ejecuci\'on efectiva
-del experimento que se desprende del hilo princial y en el cual debemos tener 
+del experimento que se desprende del hilo principal y en el cual debemos tener 
 algunos detalles en cuenta:
 
 \begin{itemize}
