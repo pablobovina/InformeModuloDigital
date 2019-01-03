@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage[spanish]{babel}
 \usepackage{graphicx}
 \usepackage[section]{placeins}
 \usepackage[hidelinks]{hyperref}
@@ -9,8 +10,10 @@
 \usepackage{amsmath}
 \usepackage[utf8]{inputenc}
 \usepackage{listings,xcolor}
+\usepackage{csquotes}
 \renewcommand{\contentsname}{Contenidos}
-
+\floatname{algorithm}{Algoritmo}
+\algrenewcommand\algorithmicprocedure{\textbf{procedimiento}}
 \algnewcommand\algorithmicassert{\texttt{assert}}
 \algnewcommand\Assert[1]{\State \algorithmicassert(#1)}%
 
@@ -64,6 +67,11 @@
 \input{cap_28_analisis_de_esfuerzo}
 \input{cap_30_conclusion}
 \input{cap_29_biblio.tex}
+\newpage
+\mbox{}
+\enquote{Los abajo firmantes, miembros del Tribunal de Evaluaci\'on de tesis, damos Fe
+que el presente ejemplar impreso, se corresponde con el aprobado por \'este
+Tribunal}
 \mbox{}
 \newpage
 \mbox{}

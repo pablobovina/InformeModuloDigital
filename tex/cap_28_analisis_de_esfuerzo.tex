@@ -3,7 +3,7 @@
 Se presentan algunas m\'etricas tales como total de l\'ineas de c\'odigo y commits de los proyectos
 obtenidos con los comandos:
 \begin{lstlisting}[language=bash]
-    $ git ls-files | xargs wc -l y $ git log --oneline | wc -l
+    $ git ls-files | xargs wc -l , $ git log --oneline | wc -l y $cloc
 \end{lstlisting}
 respectivamente.
   
@@ -123,4 +123,30 @@ respectivamente.
      853 total
     \end{lstlisting}
 \end{itemize}
+\newpage
+
+A continuaci\'on las m\'etricas provistas por el comando \enquote{cloc} sobre el
+repositorio del \textit{Servidor} el cual contiene por integraci\'on al \textit{M\'odulo Digital}
+y a la \textit{Interfaz Gr\'afica}.
+
+\begin{lstlisting}[language=bash]
+  98 text files.
+  81 unique files.                              
+  33 files ignored.
+
+github.com/AlDanial/cloc v 1.74  T=0.46 s (162.3 files/s, 16302.6 lines/s)
+---------------------------------------------------------------------
+Language         files          blank        comment           code
+---------------------------------------------------------------------
+JavaScript         30            302             54           2226
+Python             35            460            234           1860
+Markdown           2            676              0           1490
+CSS                4              8              0             57
+JSON               2              0              0             39
+C/C++ Header       1             15             38             31
+HTML               1              3             21             21
+---------------------------------------------------------------------
+SUM:               75           1464            347           5724
+---------------------------------------------------------------------
+\end{lstlisting}
 \newpage

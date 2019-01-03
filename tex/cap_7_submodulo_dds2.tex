@@ -159,12 +159,12 @@ El tiempo entre el pulso 9 y 10 debe ser menor a 100 nanosegundos.
 
 El DDS2 tiene disponible 12 registros internos de frecuencia de 8 bits, cada frecuencia ocupa 6 registros, 
 por lo tanto se pueden almacenar 2 frecuencias.
-Las frecuencias disponibles van de 0 a 80 Mhz y el valor que se almacena en los registros
+Las frecuencias disponibles van de 0 a 80 MHz y el valor que se almacena en los registros
 en representaci\'on se obtiene con la siguiente c\'alculo:
 \noindent
 \begin{gather}
     clock = 2 \times 10^{6} \\
-    frec \in \mathbb{N} \land 0 < frec < clock\\
+    \mathit{frec} \in \mathbb{N} \land 0 < frec < clock\\
     valor = frec \times (2^{48} -1 ) / clock
 \end{gather}
 

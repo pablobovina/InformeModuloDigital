@@ -1,7 +1,7 @@
 \section{Algoritmo de traducci\'on de experimentos}
 
 Un programa almacenable y ejecutable en el PP2 es una secuencia de 
-instrucciones \(I_{1} ... I_{N}\) con \(1 < N < 512 \).
+instrucciones \(I_{1} ... I_{N}\) con \(1 \leq N \leq 512 \).
 \\
 Donde las instrucciones disponibles son:
 
@@ -32,14 +32,17 @@ como v\'alidos para el PP2, por esto tenemos las siguientes reglas:
 \end{figure}
  
 \newpage
+
 \begin{algorithm}
     \caption{Algoritmo de traducci\'on base}\label{euclid}
     \begin{algorithmic}[1]
     \Procedure{Translate}{P, L=0, S=[]}
+    \State \Assert{$len(S) \leq 512$}
     \State $ins \gets pop(P)$
 
     \If {$ins = Continue$}
     \State S.append(ins)
+    \State $Translate(P, L, S)$
     \EndIf
 
     \If {$ins = Retl$}
@@ -62,15 +65,16 @@ como v\'alidos para el PP2, por esto tenemos las siguientes reglas:
         \EndIf
     \EndIf
 
-    \If {$ins = End$}
-        \If {$len(P) = 0$}
+    \If {$ins = End $}
+        \If {$len(P) = 0 \land L = 0$}
             \State $S.append(\textit{ins})$
         \Else
             \State \Return $error$
         \EndIf
     \EndIf
 
-    \State \Assert{$ 1 < len(S) < 512$}
+    \State \Assert{$ 1 \leq len(S) \leq 512$}
+    \State \Assert{$ last(S) = End$}
     \State \Return $S$
     \EndProcedure
     \end{algorithmic}
@@ -98,5 +102,15 @@ como v\'alidos para el PP2, por esto tenemos las siguientes reglas:
 %             ret Error
     
 %     ret S
+
+El algoritmo desapila instrucciones de $P$ y seg\'un el tipo se valida de manera distinta.
+La variable $L$ cuenta el n\'umero de Loops abiertos al momento, si es mayor a 4 finaliza en error
+caso contrario se agrega la instrucci\'on a la secuencia $S$ y se aplica recursi\'on.
+El \'unico caso donde no hay recursividad es cuando la instrucci\'on desapilada es $End$
+donde si hay mas intrucciones por desapilar de $P$ \'o el contador $L$ es no esta en 0 termina en error
+caso contrario se agrega $End$ a la secuencia $S$ y se valida al final que $S$ contenga al menos
+una instrucci\'on, la \'ultima sea $End$ y que no supere la longitud de 512 instrucciones,
+el limite de almacenamiento del $PP2$.
+
 
 \newpage
