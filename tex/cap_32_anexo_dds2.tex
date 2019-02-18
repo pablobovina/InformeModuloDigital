@@ -1,4 +1,39 @@
 \section{Anexo B: Comandos del DDS2}
+El DDS2 cuenta con la capacidad para combinar 16 valores de fase y 2 de frecuencias.
+Los valores de fase ocupan 2 bytes cada una mientras que cada valor de frecuencia 6 bytes.
+Las fases son almacenadas en una memoria RAM de 32 posiciciones donde el MSB se
+almacena en las direcciones pares y el LSB en la direccion impar contigua.
+Las frecuencias se almacenan en registros internos del DDS2 (12 registros en total).
+Para el almacenamiento de fases y frecuencias hacemos uso del byte de comando
+el cual es escrito en el registro interno 0x71 del DDS2. 
 
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+    \hline 
+    B0 & B1 & B2 & B3 & B4 & B5 & B6 & B7 \\
+    \hline
+    Modo   & Carga de fase    & Selector de fases & X & X & X & X & X\\
+    \hline
+    0 PC   & 0 deshabilitada  & 0 deshabilitado   & X & X & X & X & X\\
+    1 DDS2 & 1 habilitada     & 1 habilitado      & X & X & X & X & X\\
+    \hline
+\end{tabular}
+\caption{\label{tab:dds2_byte_comando}Byte de comando.}
+\end{table}
 
+Para almacenar las fases debemos habilitar el modo PC, carga de fases y deshabilitar el selector fases.
+Para almacenar frecuencias debemos habilitar el modo PC, carga de fases y deshabilitar el selector de fases.
+
+Una vez terminada la carga de fases y frecuencias debemos habilitar en modo DDS2 para
+ser manipulado externamente via pulsos.
+
+\begin{itemize}
+\item comando reset: \begin{verbatim}['a'][0x72][0x00] \end{verbatim}
+\item comando control: \begin{verbatim} ['b'][0x71][byte de control] \end{verbatim}
+\item comando almacenamiento de byte de frecuencia: \begin{verbatim} ['k'][0x75][registro interno][0x78][byte freq]\end{verbatim}
+\item comando almacenamiento de una fase: \begin{verbatim}['w'][0x70][dirección][0x74][MSB][0x70][dirección+1][0x74][LSB]\end{verbatim}
+\item comando udlck: \begin{verbatim}['u'][0x76][0x00] \end{verbatim}
+\item comando estado: \begin{verbatim}['g'][0x73] \end{verbatim}
+\end{itemize}
 \newpage
