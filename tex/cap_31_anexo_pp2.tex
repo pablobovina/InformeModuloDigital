@@ -1,5 +1,23 @@
 \section{Anexo A: Comandos del PP2}
 
+El PP2 tiene como funcion principal el almacenamiento y ejecucion de un 
+programa el cual generara los pulsos que seran de comando al AD y el DDS2
+y al exterior por medio de las salidas en el panel frontal del equipo.
+ 
+Para almacenar un programa debemos poner el PP2 en modo carga y luego
+por medio de los comandos de almacenamiento y transferencia de forma sucesiva
+la escritura de cada una de las instrucciones del programa.
 
+Una vez finalizada la carga debemos poner el PP2 en modo ejecucion de programa
+y por medio de la instruccion de ejecucion iniciar una secuencia de pulsos.
 
+\begin{itemize}
+\item comando reset: \begin{verbatim}['R'][0x50][0x02]\end{verbatim}
+\item comando modo carga de programa: \begin{verbatim}['c'][0x50][0x03]\end{verbatim}
+\item comando modo PP2: \begin{verbatim}['M'][0x50][0x00]\end{verbatim}
+\item comando iniciar secuencia de pulsos: \begin{verbatim}['D'][0x50][0x00][0x80]\end{verbatim}
+\item comando de carga de una instruccion: \begin{verbatim}['A'][0x51][byte_0]...[byte_7]\end{verbatim}
+\item comando de transferencia de una instruccion: \begin{verbatim}['T'][0x52][0x00]\end{verbatim}
+\item comando de estado: está compuesto por: \begin{verbatim}['E'][0x50][0x00]\end{verbatim}
+\end{itemize}
 \newpage
