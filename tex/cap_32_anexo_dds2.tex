@@ -1,10 +1,10 @@
 \section{Anexo B: Comandos del DDS2}
 El DDS2 cuenta con la capacidad para combinar 16 valores de fase y 2 de frecuencias.
-Los valores de fase ocupan 2 bytes cada una mientras que cada valor de frecuencia 6 bytes.
+Los valores de fase ocupan 2 Bytes cada una mientras que cada valor de frecuencia 6 Bytes.
 Las fases son almacenadas en una memoria RAM de 32 posiciciones donde el MSB se
-almacena en las direcciones pares y el LSB en la direccion impar contigua.
+almacena en las direcciones pares y el LSB en la direcci\'on impar contigua.
 Las frecuencias se almacenan en registros internos del DDS2 (12 registros en total).
-Para el almacenamiento de fases y frecuencias hacemos uso del byte de comando
+Para el almacenamiento de fases y frecuencias hacemos uso del \textit{Byte de comando}
 el cual es escrito en el registro interno 0x71 del DDS2. 
 
 \begin{table}[ht]
@@ -19,21 +19,21 @@ el cual es escrito en el registro interno 0x71 del DDS2.
     1 DDS2 & 1 habilitada     & 1 habilitado      & X & X & X & X & X\\
     \hline
 \end{tabular}
-\caption{\label{tab:dds2_byte_comando}Byte de comando.}
+\caption{\label{tab:dds2_Byte_comando}Byte de comando.}
 \end{table}
 
 Para almacenar las fases debemos habilitar el modo PC, carga de fases y deshabilitar el selector fases.
-Para almacenar frecuencias debemos habilitar el modo PC, carga de fases y deshabilitar el selector de fases.
+Para almacenar frecuencias debemos habilitar el modo PC, dehabilitar carga de fases y deshabilitar el selector de fases.
 
-Una vez terminada la carga de fases y frecuencias debemos habilitar en modo DDS2 el selector de fases para
-ser manipulado externamente via pulsos.
+Una vez terminada la carga de fases y frecuencias debemos habilitar el modo DDS2, selector de fases y deshabilitar la carga de fases, todo esto para ser manipulado externamente por los pulsos generados por el PP2.
 
+\subsection{Comandos USB}
 \begin{itemize}
-\item comando reset: \begin{verbatim}['a'][0x72][0x00] \end{verbatim}
-\item comando control: \begin{verbatim} ['b'][0x71][byte de control] \end{verbatim}
-\item comando almacenamiento de byte de frecuencia: \begin{verbatim} ['k'][0x75][registro interno][0x78][byte freq]\end{verbatim}
-\item comando almacenamiento de una fase: \begin{verbatim}['w'][0x70][dirección][0x74][MSB][0x70][dirección+1][0x74][LSB]\end{verbatim}
-\item comando udlck: \begin{verbatim}['u'][0x76][0x00] \end{verbatim}
-\item comando estado: \begin{verbatim}['g'][0x73] \end{verbatim}
+\item Reset: \begin{verbatim}['a'][0x72][0x00] \end{verbatim}
+\item Control y comando: \begin{verbatim} ['b'][0x71][Byte de comando] \end{verbatim}
+\item Almacenamiento de un byte de frecuencia: \begin{verbatim} ['k'][0x75][registro interno][0x78][Byte freq]\end{verbatim}
+\item Almacenamiento de una fase: \begin{verbatim}['w'][0x70][dirección][0x74][MSB][0x70][dirección+1][0x74][LSB]\end{verbatim}
+\item Actualizaci\'on de registros de trabajo (Udclk): \begin{verbatim}['u'][0x76][0x00] \end{verbatim}
+\item Estado: \begin{verbatim}['g'][0x73] \end{verbatim}
 \end{itemize}
 \newpage

@@ -1,36 +1,37 @@
 \section{Anexo C: Comandos del AD}
 
-El conversor analogico digital tiene 2 modos de trabajo bien definidos, modo PC y modo AD. 
-Los modos son configurados con el bit cero, del byte de control en 0 y 1 respectivamente.
-En modo PC se pueden realizar 2 acciones principales: la configuracion general y la extraccion de los datos.
-En modo AD, el conversor se pone en espera del pulso 5 para realizar la conversion de los datos para una posterior extraccion por parte del usuario.
+El conversor anal\'ogico digital tiene 2 modos de trabajo bien definidos, modo PC y modo AD. 
+Los modos son elegidos con el bit cero del \textit{Byte de control} en 0 y 1 respectivamente.
 
-El buffer de adquisicion es variable en bloques de $64*16*2^{i}$ bytes con $0 \leq i \leq 7$, la eleccion
-del bloque se hace con los bits 4,5,6 del byte de control.
-Se debe reiniciar el contador de direcciones de buffer antes de una conversion a su valor por defecto,
-esto se hace por medio del bit 7 del btye de control poniendolo sucesivamente en 1 y 0. 
+En modo PC se pueden realizar 2 acciones principales: la configuraci\'on general y la extracci\'on de los datos.
+En modo AD, el conversor se pone en espera del pulso 5 para realizar la conversi\'on de los datos para una posterior extracci\'on de parte del usuario.
 
-Existen 2 formas de adquisicion, por pulsacion y continuo, en este trabajo utilizamos el continuo por 
-medio del bit 1 del byte de control en 0.
+La longitud del buffer de adquisici\'on es variable en bloques de $64*16*2^{i}$ Bytes con $0 \leq i \leq 7$, la elecci\'on del bloque se hace con los bits 4,5,6 del yte de control.
 
-Los bits 3 y 4 del byte de control son sin cuidado y su valor es puesto en cero.
+Internamente el AD cuenta con contador de direcciones que indexa el buffer de adquisici\'on y el mismo debe ser reiniciado en 2 ocasiones: previo a una adquisici\'on y antes de realizar una extracci\'on de datos.
+Esto se hace por medio del bit 7 del btye de control poniendolo sucesivamente en 1 y 0. 
 
-Es posible determinar el estado de finalizacion de la conversion por medio del comando de estado, 
-el cual responde con un byte donde el valor del primer bit indicara en cero el fin de la adquisicion.
+Existen 2 formas de adquisici\'on, por pulsaci\'on y continuo, en este trabajo utilizamos el continuo por 
+medio del bit 1 del \textit{Byte de control} en 0.
 
-La configuracion del intervalo de muestreo se hara almacenando en el registro 0xC el byte
-de represetacion del tiempo entre muestra y muestra.
+Los bits 3 y 4 del \textit{Byte de control} son sin cuidado y su valor es puesto en cero.
 
-La obtencion de los datos del buffer de adquisicion requiere el reset del contador (bit 7 en 1 y 0 sucesivamente)
-antes de la ejecucion del comando de obtencion de datos, el cual tiene como parametro la direccion del 
-buffer y se obtiene como respuesta un arreglo contiguo de bytes acorde al numero de bloques configurado
-en el registro de control.
+Es posible determinar el estado de finalizaci\'on de la conversi\'on por medio del comando de estado, 
+el cual responde con un Byte donde el valor del bit 0 indicar\'a en cero el fin de la adquisici\'on.
 
+La configuraci\'on del intervalo de muestreo se har\'a almacenando en el registro 0x0C el Byte
+de represetaci\'on del tiempo entre muestra y muestra.
+
+La obtenci\'on de los datos del buffer de adquisici\'on requiere el reset del contador (bit 7 en 1 y 0 sucesivamente)
+antes de la ejecuci\'on del comando de extraccio\'n de datos, el cual tiene como par\'ametro la direcci\'on del 
+buffer y como respuesta un arreglo contiguo de Bytes acorde al n\'umero de bloques preconfigurado en el registro de control 0x0B.
+
+\subsection{Comandos USB}
 \begin{itemize}
-\item comando de control: \begin{verbatim}['r'][0x0B][byte de control]\end{verbatim}
-\item comando de estado: \begin{verbatim}['S'][0x0B][intervalo]\end{verbatim}
-\item comando de configuracion de intervalo: \begin{verbatim}['t'][0x0C][byte ts]\end{verbatim}
-\item comando de extraccion de adquisisciones: \begin{verbatim}['B'][OxO9|0x0A|0x0B]\end{verbatim}
+\item Control: \begin{verbatim}['r'][0x0B][Byte de control]\end{verbatim}
+\item Configuraci\'on de intervalo: \begin{verbatim}['t'][0x0C][Byte ts]\end{verbatim}
+\item Extracci\'on de adquisiciones: \begin{verbatim}['B'][OxO9|0x0A|0x0B]\end{verbatim}
+\item Estado: \begin{verbatim}['S'][0x0B][0x00]\end{verbatim}
 \end{itemize}
 
 \newpage
